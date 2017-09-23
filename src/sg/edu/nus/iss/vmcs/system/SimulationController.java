@@ -8,6 +8,10 @@
 package sg.edu.nus.iss.vmcs.system;
 
 import sg.edu.nus.iss.vmcs.ControlFactory;
+import sg.edu.nus.iss.vmcs.Mediator;
+import sg.edu.nus.iss.vmcs.NotificationObject;
+import sg.edu.nus.iss.vmcs.TalkativePanel;
+import sg.edu.nus.iss.vmcs.NotificationObject.NotificationType;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
@@ -20,14 +24,15 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class SimulationController {
+public class SimulationController extends TalkativePanel{
 	private SimulatorControlPanel scp = null;
 
 	/**
 	 * This constructor creates an instance of the SimulationController object.
 	 * @param ctrl the MainController.
 	 */
-	public SimulationController() {
+	public SimulationController(Mediator m) {
+		super(m);
 		scp = new SimulatorControlPanel(this);
 	}
 
@@ -154,5 +159,14 @@ public class SimulationController {
 		cctrl = ControlFactory.getTransactionController();
 		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
 		cctrl.displayCustomerPanel();
+	}
+
+	@Override
+	public void receive(Object arg) {
+		NotificationObject obj = (NotificationObject) arg;
+		if(obj.getType() == NotificationType.RefreshSimulatorControlPanel) {
+			getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
+		}
+		
 	}
 }//End of class SimulationController

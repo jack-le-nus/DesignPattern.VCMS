@@ -688,509 +688,509 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="92">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="93" name="mainCtrl"/>      
-      <multiplicity id="94" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="46" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="95">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="96" name="drinkSelectionBox"/>      
-      <multiplicity id="97" minimum="0" maximum="1"/>    
+      <attribute id="93" name="drinkSelectionBox"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="98">    
+  <association id="95">    
     <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="99" name="mctrl"/>      
-      <multiplicity id="100" minimum="0" maximum="1"/>    
+      <attribute id="96" name="mctrl"/>      
+      <multiplicity id="97" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="101">    
+  <generalization id="98">    
     <end type="SOURCE" refId="41"/>    
     <end type="TARGET" refId="43"/>  
   </generalization>  
-  <association id="102">    
+  <association id="99">    
     <end type="SOURCE" refId="59" navigable="false">      
-      <attribute id="103" name="door"/>      
-      <multiplicity id="104" minimum="0" maximum="1"/>    
+      <attribute id="100" name="door"/>      
+      <multiplicity id="101" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="63" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="105">    
+  <association id="102">    
     <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="106" name="mCtrl"/>      
-      <multiplicity id="107" minimum="0" maximum="1"/>    
+      <attribute id="103" name="mCtrl"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="108">    
+  <generalization id="105">    
     <end type="SOURCE" refId="48"/>    
     <end type="TARGET" refId="43"/>  
   </generalization>  
-  <association id="109">    
+  <association id="106">    
     <bendpoint x="615" y="111"/>    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="110" name="txCtrl"/>      
-      <multiplicity id="111" minimum="0" maximum="1"/>    
+      <attribute id="107" name="txCtrl"/>      
+      <multiplicity id="108" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="112">    
+  <association id="109">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="113" name="wndInvalidCoin"/>      
-      <multiplicity id="114" minimum="0" maximum="1"/>    
+      <attribute id="110" name="wndInvalidCoin"/>      
+      <multiplicity id="111" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="55" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="115">    
+  <generalization id="112">    
     <end type="SOURCE" refId="38"/>    
     <end type="TARGET" refId="31"/>  
   </generalization>  
-  <association id="116">    
+  <association id="113">    
     <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="117" name="mCtrl"/>      
-      <multiplicity id="118" minimum="0" maximum="1"/>    
+      <attribute id="114" name="mCtrl"/>      
+      <multiplicity id="115" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="119">    
+  <association id="116">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="120" name="mainController"/>      
-      <multiplicity id="121" minimum="0" maximum="1"/>    
+      <attribute id="117" name="mainController"/>      
+      <multiplicity id="118" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="46" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="122">    
+  <association id="119">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="123" name="drinkSelectionItems"/>      
-      <multiplicity id="124" minimum="0" maximum="2147483647"/>    
+      <attribute id="120" name="drinkSelectionItems"/>      
+      <multiplicity id="121" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="125">    
+  <association id="122">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="126" name="maintenanceController"/>      
-      <multiplicity id="127" minimum="0" maximum="1"/>    
+      <attribute id="123" name="maintenanceController"/>      
+      <multiplicity id="124" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="128">    
+  <association id="125">    
     <bendpoint x="736" y="524"/>    
     <bendpoint x="736" y="619"/>    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="129" name="totalCash"/>      
-      <multiplicity id="130" minimum="0" maximum="1"/>    
+      <attribute id="126" name="totalCash"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="131">    
+  <association id="128">    
     <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="132" name="pswd"/>      
-      <multiplicity id="133" minimum="0" maximum="1"/>    
+      <attribute id="129" name="pswd"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="15" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="134">    
+  <association id="131">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="135" name="dDisplay"/>      
-      <multiplicity id="136" minimum="0" maximum="1"/>    
+      <attribute id="132" name="dDisplay"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="137">    
+  <association id="134">    
     <end type="SOURCE" refId="27" navigable="false">      
-      <attribute id="138" name="mctrl"/>      
-      <multiplicity id="139" minimum="0" maximum="1"/>    
+      <attribute id="135" name="mctrl"/>      
+      <multiplicity id="136" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="140">    
+  <association id="137">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="141" name="price"/>      
-      <multiplicity id="142" minimum="0" maximum="1"/>    
+      <attribute id="138" name="price"/>      
+      <multiplicity id="139" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="53" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="143">    
+  <association id="140">    
     <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="144" name="mctrl"/>      
-      <multiplicity id="145" minimum="0" maximum="1"/>    
+      <attribute id="141" name="mctrl"/>      
+      <multiplicity id="142" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="146">    
+  <association id="143">    
     <bendpoint x="1190" y="524"/>    
     <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="147" name="mpanel"/>      
-      <multiplicity id="148" minimum="0" maximum="1"/>    
+      <attribute id="144" name="mpanel"/>      
+      <multiplicity id="145" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="149">    
+  <association id="146">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="150" name="password"/>      
-      <multiplicity id="151" minimum="0" maximum="1"/>    
+      <attribute id="147" name="password"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="53" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="152">    
+  <generalization id="149">    
     <end type="SOURCE" refId="40"/>    
     <end type="TARGET" refId="34"/>  
   </generalization>  
-  <association id="153">    
+  <association id="150">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="154" name="txCtrl"/>      
-      <multiplicity id="155" minimum="0" maximum="1"/>    
+      <attribute id="151" name="txCtrl"/>      
+      <multiplicity id="152" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="156">    
+  <association id="153">    
     <end type="SOURCE" refId="50" navigable="false">      
-      <attribute id="157" name="mctrl"/>      
-      <multiplicity id="158" minimum="0" maximum="1"/>    
+      <attribute id="154" name="mctrl"/>      
+      <multiplicity id="155" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="46" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="159">    
+  <association id="156">    
     <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="160" name="am"/>      
-      <multiplicity id="161" minimum="0" maximum="1"/>    
+      <attribute id="157" name="am"/>      
+      <multiplicity id="158" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="29" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="162">    
+  <association id="159">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="163" name="coinReceiver"/>      
-      <multiplicity id="164" minimum="0" maximum="1"/>    
+      <attribute id="160" name="coinReceiver"/>      
+      <multiplicity id="161" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="165">    
+  <association id="162">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="166" name="wndNoChangeAvailable"/>      
-      <multiplicity id="167" minimum="0" maximum="1"/>    
+      <attribute id="163" name="wndNoChangeAvailable"/>      
+      <multiplicity id="164" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="55" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="168">    
+  <association id="165">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="169" name="txCtrl"/>      
-      <multiplicity id="170" minimum="0" maximum="1"/>    
+      <attribute id="166" name="txCtrl"/>      
+      <multiplicity id="167" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="171">    
+  <association id="168">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="172" name="storeCtrl"/>      
-      <multiplicity id="173" minimum="0" maximum="1"/>    
+      <attribute id="169" name="storeCtrl"/>      
+      <multiplicity id="170" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="174">    
+  <association id="171">    
     <end type="SOURCE" refId="59" navigable="false">      
-      <attribute id="175" name="ml"/>      
-      <multiplicity id="176" minimum="0" maximum="1"/>    
+      <attribute id="172" name="ml"/>      
+      <multiplicity id="173" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="60" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="177">    
+  <association id="174">    
     <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="178" name="storeCtrl"/>      
-      <multiplicity id="179" minimum="0" maximum="1"/>    
+      <attribute id="175" name="storeCtrl"/>      
+      <multiplicity id="176" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="180">    
+  <association id="177">    
     <end type="SOURCE" refId="35" navigable="false">      
-      <attribute id="181" name="drinksLoader"/>      
-      <multiplicity id="182" minimum="0" maximum="1"/>    
+      <attribute id="178" name="drinksLoader"/>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="36" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="183">    
+  <association id="180">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="184" name="lbdCollectCoins"/>      
-      <multiplicity id="185" minimum="0" maximum="1"/>    
+      <attribute id="181" name="lbdCollectCoins"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="57" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="186">    
+  <association id="183">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="187" name="validPswd"/>      
-      <multiplicity id="188" minimum="0" maximum="1"/>    
+      <attribute id="184" name="validPswd"/>      
+      <multiplicity id="185" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="55" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="189">    
+  <association id="186">    
     <end type="SOURCE" refId="61" navigable="false">      
-      <attribute id="190" name="storeCtrl"/>      
-      <multiplicity id="191" minimum="0" maximum="1"/>    
+      <attribute id="187" name="storeCtrl"/>      
+      <multiplicity id="188" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="192">    
+  <association id="189">    
     <bendpoint x="1169" y="524"/>    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="193" name="mctrl"/>      
-      <multiplicity id="194" minimum="0" maximum="1"/>    
+      <attribute id="190" name="mctrl"/>      
+      <multiplicity id="191" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="195">    
+  <association id="192">    
     <bendpoint x="636" y="111"/>    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="196" name="custPanel"/>      
-      <multiplicity id="197" minimum="0" maximum="1"/>    
+      <attribute id="193" name="custPanel"/>      
+      <multiplicity id="194" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="198">    
+  <association id="195">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="199" name="invalidPswd"/>      
-      <multiplicity id="200" minimum="0" maximum="1"/>    
+      <attribute id="196" name="invalidPswd"/>      
+      <multiplicity id="197" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="55" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="201">    
+  <association id="198">    
     <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="202" name="items"/>      
-      <multiplicity id="203" minimum="0" maximum="2147483647"/>    
+      <attribute id="199" name="items"/>      
+      <multiplicity id="200" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="32" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="204">    
+  <association id="201">    
     <end type="SOURCE" refId="44" navigable="false">      
-      <attribute id="205" name="mainCtrl"/>      
-      <multiplicity id="206" minimum="0" maximum="1"/>    
+      <attribute id="202" name="mainCtrl"/>      
+      <multiplicity id="203" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="46" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="207">    
+  <association id="204">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="208" name="txCtrl"/>      
-      <multiplicity id="209" minimum="0" maximum="1"/>    
+      <attribute id="205" name="txCtrl"/>      
+      <multiplicity id="206" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="210">    
+  <generalization id="207">    
     <end type="SOURCE" refId="37"/>    
     <end type="TARGET" refId="34"/>  
   </generalization>  
-  <association id="211">    
+  <association id="208">    
     <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="212" name="bi"/>      
-      <multiplicity id="213" minimum="0" maximum="1"/>    
+      <attribute id="209" name="bi"/>      
+      <multiplicity id="210" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="214">    
+  <association id="211">    
     <end type="SOURCE" refId="51" navigable="false">      
-      <attribute id="215" name="ctrl"/>      
-      <multiplicity id="216" minimum="0" maximum="1"/>    
+      <attribute id="212" name="ctrl"/>      
+      <multiplicity id="213" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="49" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="217">    
+  <association id="214">    
     <end type="SOURCE" refId="49" navigable="false">      
-      <attribute id="218" name="scp"/>      
-      <multiplicity id="219" minimum="0" maximum="1"/>    
+      <attribute id="215" name="scp"/>      
+      <multiplicity id="216" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="44" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="220">    
+  <association id="217">    
     <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="221" name="items"/>      
-      <multiplicity id="222" minimum="0" maximum="2147483647"/>    
+      <attribute id="218" name="items"/>      
+      <multiplicity id="219" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="223">    
+  <association id="220">    
     <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="224" name="actrl"/>      
-      <multiplicity id="225" minimum="0" maximum="1"/>    
+      <attribute id="221" name="actrl"/>      
+      <multiplicity id="222" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="29" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="226">    
+  <association id="223">    
     <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="227" name="wnd"/>      
-      <multiplicity id="228" minimum="0" maximum="1"/>    
+      <attribute id="224" name="wnd"/>      
+      <multiplicity id="225" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="55" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="229">    
+  <association id="226">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="230" name="simulatorController"/>      
-      <multiplicity id="231" minimum="0" maximum="1"/>    
+      <attribute id="227" name="simulatorController"/>      
+      <multiplicity id="228" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="49" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="232">    
+  <association id="229">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="233" name="txCtrl"/>      
-      <multiplicity id="234" minimum="0" maximum="1"/>    
+      <attribute id="230" name="txCtrl"/>      
+      <multiplicity id="231" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="235">    
+  <association id="232">    
     <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="236" name="mctrl"/>      
-      <multiplicity id="237" minimum="0" maximum="1"/>    
+      <attribute id="233" name="mctrl"/>      
+      <multiplicity id="234" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="238">    
+  <association id="235">    
     <end type="SOURCE" refId="35" navigable="false">      
-      <attribute id="239" name="cashLoader"/>      
-      <multiplicity id="240" minimum="0" maximum="1"/>    
+      <attribute id="236" name="cashLoader"/>      
+      <multiplicity id="237" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="36" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="241">    
+  <association id="238">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="242" name="cDisplay"/>      
-      <multiplicity id="243" minimum="0" maximum="1"/>    
+      <attribute id="239" name="cDisplay"/>      
+      <multiplicity id="240" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="23" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="244">    
+  <association id="241">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="245" name="txCtrl"/>      
-      <multiplicity id="246" minimum="0" maximum="1"/>    
+      <attribute id="242" name="txCtrl"/>      
+      <multiplicity id="243" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="247">    
+  <association id="244">    
     <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="248" name="mctrl"/>      
-      <multiplicity id="249" minimum="0" maximum="1"/>    
+      <attribute id="245" name="mctrl"/>      
+      <multiplicity id="246" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="250">    
+  <association id="247">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="251" name="storeController"/>      
-      <multiplicity id="252" minimum="0" maximum="1"/>    
+      <attribute id="248" name="storeController"/>      
+      <multiplicity id="249" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="253">    
+  <generalization id="250">    
     <end type="SOURCE" refId="39"/>    
     <end type="TARGET" refId="31"/>  
   </generalization>  
-  <association id="254">    
+  <association id="251">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="255" name="transactionController"/>      
-      <multiplicity id="256" minimum="0" maximum="1"/>    
+      <attribute id="252" name="transactionController"/>      
+      <multiplicity id="253" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="257">    
+  <association id="254">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="258" name="lbdCollectCan"/>      
-      <multiplicity id="259" minimum="0" maximum="1"/>    
+      <attribute id="255" name="lbdCollectCan"/>      
+      <multiplicity id="256" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="57" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="260">    
+  <association id="257">    
     <end type="SOURCE" refId="60" navigable="false">      
-      <attribute id="261" name="drinksDisplay"/>      
-      <multiplicity id="262" minimum="0" maximum="1"/>    
+      <attribute id="258" name="drinksDisplay"/>      
+      <multiplicity id="259" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="61" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="263">    
+  <association id="260">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="264" name="machineryController"/>      
-      <multiplicity id="265" minimum="0" maximum="1"/>    
+      <attribute id="261" name="machineryController"/>      
+      <multiplicity id="262" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="59" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="266">    
+  <association id="263">    
     <end type="SOURCE" refId="62" navigable="false">      
-      <attribute id="267" name="storeCtrl"/>      
-      <multiplicity id="268" minimum="0" maximum="1"/>    
+      <attribute id="264" name="storeCtrl"/>      
+      <multiplicity id="265" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="269">    
+  <association id="266">    
     <end type="SOURCE" refId="61" navigable="false">      
-      <attribute id="270" name="viewItems"/>      
-      <multiplicity id="271" minimum="0" maximum="2147483647"/>    
+      <attribute id="267" name="viewItems"/>      
+      <multiplicity id="268" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="53" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="272">    
+  <association id="269">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="273" name="dispenseController"/>      
-      <multiplicity id="274" minimum="0" maximum="1"/>    
+      <attribute id="270" name="dispenseController"/>      
+      <multiplicity id="271" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="275">    
+  <association id="272">    
     <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="273" name="ctrl"/>      
+      <multiplicity id="274" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="49" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="275">    
+    <end type="SOURCE" refId="45" navigable="false">      
       <attribute id="276" name="ctrl"/>      
       <multiplicity id="277" minimum="0" maximum="1"/>    
     </end>    
@@ -1198,114 +1198,106 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="278">    
-    <end type="SOURCE" refId="45" navigable="false">      
-      <attribute id="279" name="ctrl"/>      
-      <multiplicity id="280" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="49" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="281">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="282" name="txCtrl"/>      
-      <multiplicity id="283" minimum="0" maximum="1"/>    
+      <attribute id="279" name="txCtrl"/>      
+      <multiplicity id="280" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="284">    
+  <association id="281">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="285" name="lbdTotalMoneyInserted"/>      
-      <multiplicity id="286" minimum="0" maximum="1"/>    
+      <attribute id="282" name="lbdTotalMoneyInserted"/>      
+      <multiplicity id="283" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="57" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="287">    
+  <association id="284">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="288" name="mctrl"/>      
-      <multiplicity id="289" minimum="0" maximum="1"/>    
+      <attribute id="285" name="mctrl"/>      
+      <multiplicity id="286" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="290">    
+  <association id="287">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="291" name="btnCoinButton"/>      
-      <multiplicity id="292" minimum="0" maximum="2147483647"/>    
+      <attribute id="288" name="btnCoinButton"/>      
+      <multiplicity id="289" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="293">    
+  <association id="290">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="294" name="coinInputBox"/>      
-      <multiplicity id="295" minimum="0" maximum="1"/>    
+      <attribute id="291" name="coinInputBox"/>      
+      <multiplicity id="292" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="296">    
+  <association id="293">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="297" name="dispenseCtrl"/>      
-      <multiplicity id="298" minimum="0" maximum="1"/>    
+      <attribute id="294" name="dispenseCtrl"/>      
+      <multiplicity id="295" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="299">    
+  <association id="296">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="300" name="cashLoader"/>      
-      <multiplicity id="301" minimum="0" maximum="1"/>    
+      <attribute id="297" name="cashLoader"/>      
+      <multiplicity id="298" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="41" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="302">    
+  <association id="299">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="303" name="collectCash"/>      
-      <multiplicity id="304" minimum="0" maximum="1"/>    
+      <attribute id="300" name="collectCash"/>      
+      <multiplicity id="301" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="53" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="305">    
+  <association id="302">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="306" name="txCtrl"/>      
-      <multiplicity id="307" minimum="0" maximum="1"/>    
+      <attribute id="303" name="txCtrl"/>      
+      <multiplicity id="304" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="308">    
+  <generalization id="305">    
     <end type="SOURCE" refId="33"/>    
     <end type="TARGET" refId="32"/>  
   </generalization>  
-  <association id="309">    
+  <association id="306">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="310" name="coinReceiver"/>      
-      <multiplicity id="311" minimum="0" maximum="1"/>    
+      <attribute id="307" name="coinReceiver"/>      
+      <multiplicity id="308" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="312">    
+  <association id="309">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="313" name="bi"/>      
-      <multiplicity id="314" minimum="0" maximum="1"/>    
+      <attribute id="310" name="bi"/>      
+      <multiplicity id="311" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="315">    
+  <association id="312">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="316" name="changeGiver"/>      
-      <multiplicity id="317" minimum="0" maximum="1"/>    
+      <attribute id="313" name="changeGiver"/>      
+      <multiplicity id="314" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="318">    
+  <realization id="315">    
     <end type="SOURCE" refId="43"/>    
     <end type="TARGET" refId="36"/>  
   </realization>  

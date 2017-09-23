@@ -16,8 +16,14 @@ package sg.edu.nus.iss.vmcs.customer;
  */
 
 import java.awt.Frame;
+import java.util.Observable;
+import java.util.Observer;
 
 import sg.edu.nus.iss.vmcs.ControlFactory;
+import sg.edu.nus.iss.vmcs.Mediator;
+import sg.edu.nus.iss.vmcs.NotificationObject;
+import sg.edu.nus.iss.vmcs.NotificationObject.NotificationType;
+import sg.edu.nus.iss.vmcs.TalkativePanel;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
@@ -30,7 +36,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class TransactionController {
+public class TransactionController extends TalkativePanel {
 	private CustomerPanel custPanel;
 	private DispenseController dispenseCtrl;
 	private ChangeGiver changeGiver;
@@ -49,7 +55,8 @@ public class TransactionController {
 	 * This constructor creates an instance of the TransactionController.
 	 * @param mainCtrl the MainController.
 	 */
-	public TransactionController(MainController mainCtrl) {
+	public TransactionController(Mediator m, MainController mainCtrl) {
+		super(m);
 		dispenseCtrl=new DispenseController(this);
 		coinReceiver=new CoinReceiver(this);
 		changeGiver=new ChangeGiver(this);
@@ -333,5 +340,28 @@ public class TransactionController {
 	 */
 	public void nullifyCustomerPanel(){
 		custPanel=null;
+	}
+
+	@Override
+	public void receive(Object arg) {
+		NotificationObject obj = (NotificationObject) arg;
+		if(obj.getType() == NotificationType.AuthencationMaintainer && 
+				(boolean)obj.getObject() == true) {
+			this.terminateTransaction();
+		}
+		
+		if(obj.getType() == NotificationType.IsCustomerPanelOpened) {
+			//Refresh Customer Panel
+			CustomerPanel custPanel=this.getCustomerPanel();
+			if(custPanel==null){
+				NotificationObject obj1 = new NotificationObject();
+				obj.setType(NotificationType.RefreshSimulatorControlPanel);
+				this.send(obj1);
+			}
+			else{
+				this.refreshCustomerPanel();
+			}
+		}
+		
 	}
 }//End of class TransactionController

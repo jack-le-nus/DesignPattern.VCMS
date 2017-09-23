@@ -8,8 +8,13 @@
 package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.Frame;
+import java.util.Observable;
 
 import sg.edu.nus.iss.vmcs.ControlFactory;
+import sg.edu.nus.iss.vmcs.Mediator;
+import sg.edu.nus.iss.vmcs.NotificationObject;
+import sg.edu.nus.iss.vmcs.NotificationObject.NotificationType;
+import sg.edu.nus.iss.vmcs.TalkativePanel;
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
@@ -28,7 +33,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MaintenanceController {
+public class MaintenanceController extends TalkativePanel{
 	private MaintenancePanel mpanel;
 	private AccessManager am;
 
@@ -36,7 +41,8 @@ public class MaintenanceController {
 	 * This constructor creates an instance of the MaintenanceController.
 	 * @param mctrl the MainController.
 	 */
-	public MaintenanceController() {
+	public MaintenanceController(Mediator m) {
+		super(m);
 		am = new AccessManager(this);
 	}
 
@@ -87,10 +93,11 @@ public class MaintenanceController {
 			// login successful
 			mpanel.setActive(MaintenancePanel.WORKING, true);
 			mpanel.setActive(MaintenancePanel.PSWD, false);
-			MachineryController machctrl = ControlFactory.getMachineryController();
-			machctrl.setDoorState(false);
-			//Terminate customer transaction
-			ControlFactory.getTransactionController().terminateTransaction();
+			
+			NotificationObject obj = new NotificationObject();
+			obj.setObject(st);
+			obj.setType(NotificationType.AuthencationMaintainer);
+			this.send(obj);
 		}
 	}
 
@@ -167,7 +174,9 @@ public class MaintenanceController {
 		try {
 			cc = sctrl.transferAll();
 			mpanel.displayCoins(cc);
-			machctrl.displayCoinStock();
+			NotificationObject obj = new NotificationObject();
+			obj.setType(NotificationType.TransferAll);
+			this.send(obj);
 			// the cash qty current is displayed in the Maintenance panel needs to be update to be 0;
 			// not required.
 			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
@@ -206,30 +215,10 @@ public class MaintenanceController {
 	 * This method is invoked by the exit button listener.
 	 */
 	public void logoutMaintainer() {
-
-		MachineryController machctrl = ControlFactory.getMachineryController();
-
-		boolean ds = machctrl.isDoorClosed();
-
-		if (ds == false) {
-			MessageDialog msg =
-				new MessageDialog(
-					mpanel,
-					"Please Lock the Door before You Leave");
-			msg.setLocation(500, 500);
-			return;
-		}
-
-		mpanel.setActive(MaintenancePanel.DIALOG, true);
-		
-		//Refresh Customer Panel
-		CustomerPanel custPanel=ControlFactory.getTransactionController().getCustomerPanel();
-		if(custPanel==null){
-			ControlFactory.getSimulationController().getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
-		}
-		else{
-			ControlFactory.getTransactionController().refreshCustomerPanel();
-		}
+		NotificationObject obj = new NotificationObject();
+		obj.setObject(false);
+		obj.setType(NotificationType.AuthencationMaintainer);
+		this.send(obj);
 	}
 
 	/**
@@ -239,5 +228,26 @@ public class MaintenanceController {
 	public void closeDown() {
 		if (mpanel != null)
 			mpanel.closeDown();
+	}
+
+	@Override
+	public void receive(Object arg) {
+		NotificationObject obj = (NotificationObject) arg;
+		if(obj.getType() == NotificationType.IsDoorClosed) {
+			if((boolean)obj.getObject() == false){
+				MessageDialog msg =
+					new MessageDialog(
+						mpanel,
+						"Please Lock the Door before You Leave");
+				msg.setLocation(500, 500);
+				return;
+			}
+			
+			mpanel.setActive(MaintenancePanel.DIALOG, true);
+			
+			NotificationObject obj1 = new NotificationObject();
+			obj.setType(NotificationType.IsCustomerPanelOpened);
+			this.send(obj1);
+		}
 	}
 }//End of class MaintenanceController

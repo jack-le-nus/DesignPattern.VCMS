@@ -10,7 +10,16 @@ package sg.edu.nus.iss.vmcs.machinery;
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.util.*;
 import sg.edu.nus.iss.vmcs.ControlFactory;
+import sg.edu.nus.iss.vmcs.Mediator;
+import sg.edu.nus.iss.vmcs.NotificationObject;
+import sg.edu.nus.iss.vmcs.NotificationObject.NotificationType;
+import sg.edu.nus.iss.vmcs.TalkativePanel;
+import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
+import sg.edu.nus.iss.vmcs.maintenance.MaintenancePanel;
 import sg.edu.nus.iss.vmcs.store.*;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * This object controls the Change State use case.
@@ -18,7 +27,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MachineryController {
+public class MachineryController extends TalkativePanel{
 
 	private MachinerySimulatorPanel ml;
 	private Door door;
@@ -27,8 +36,8 @@ public class MachineryController {
 	 * This constructor creates an instance of MachineryController.
 	 * @param mctrl the MainController.
 	 */
-	public MachineryController() {
-		
+	public MachineryController(Mediator m) {
+		super(m);
 	}
 
 	/**
@@ -191,5 +200,30 @@ public class MachineryController {
 		if(ml!=null){
 			ml.refresh();
 		}
+	}
+
+	@Override
+	public void receive(Object arg) {
+		NotificationObject obj = (NotificationObject) arg;
+		if(obj.getType() == NotificationType.AuthencationMaintainer) {
+			if((boolean)obj.getObject() == true){
+				this.setDoorState(false);
+			} else {
+				NotificationObject obj1 = new NotificationObject();
+				obj.setObject(isDoorClosed());
+				obj.setType(NotificationType.IsDoorClosed);
+				this.send(obj1);
+			}
+		}
+		
+		if(obj.getType() == NotificationType.TransferAll){
+			try {
+				displayCoinStock();
+			} catch (VMCSException e) {
+				System.out.println("MaintenanceController.transferAll:" + e);
+			}
+			
+		}
+		
 	}
 }//End of class MachineryController

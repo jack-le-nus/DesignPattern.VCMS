@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.vmcs;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 import sg.edu.nus.iss.vmcs.customer.DispenseController;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
@@ -26,6 +28,7 @@ public class ControlFactory {
     private static String propertyFile = null;
     private static CashPropertyLoader cashLoader = null;
     private static DrinkPropertyLoader drinksLoader = null;
+    private static ApplicationMediator appMediator = null;
     
     public static void initialize(String propertyFile) throws VMCSException {
 		try {
@@ -37,10 +40,20 @@ public class ControlFactory {
 			cashLoader.initialize();
 			drinksLoader.initialize();
 			
+			appMediator = new ApplicationMediator();
+			
 			
 			getStoreController().initialize();
 			getMachineryController().initialize();
 			
+			TalkativePanel machineryController = getMachineryController();
+			TalkativePanel transactionController = getTransactionController();
+			TalkativePanel maintenanceController = getMaintenanceController();
+			TalkativePanel simulationController = getSimulationController();
+			
+			appMediator.addTalkativePanel(machineryController);
+			appMediator.addTalkativePanel(transactionController);
+			appMediator.addTalkativePanel(maintenanceController);
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",
@@ -54,7 +67,7 @@ public class ControlFactory {
     }
     
     public static SimulationController getSimulationController() {
-        if (simulatorController == null) simulatorController = new SimulationController();
+        if (simulatorController == null) simulatorController = new SimulationController(appMediator);
         return simulatorController;
     }
 
@@ -64,17 +77,17 @@ public class ControlFactory {
     }
 
     public static TransactionController getTransactionController() {
-        if (transactionController == null) transactionController = new TransactionController(getMainController());
+        if (transactionController == null) transactionController = new TransactionController( appMediator,getMainController());
         return transactionController;
     }
 
     public static MachineryController getMachineryController(){
-        if (machineryController == null) machineryController = new MachineryController();
+        if (machineryController == null) machineryController = new MachineryController(appMediator);
         return machineryController;
     }
 
     public static MaintenanceController getMaintenanceController() {
-        if (maintenanceController == null) maintenanceController = new MaintenanceController();
+        if (maintenanceController == null) maintenanceController = new MaintenanceController(appMediator);
         return maintenanceController;
     }
     
