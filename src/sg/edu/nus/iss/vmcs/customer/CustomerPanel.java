@@ -31,6 +31,7 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.LabelledValue;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
@@ -113,7 +114,7 @@ public class CustomerPanel extends Dialog {
 		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent ev) {
-				txCtrl.getMainController().getSimulatorControlPanel().setButtonState(SimulatorControlPanel.ACT_CUSTOMER,true);
+				ControlFactory.getSimulationController().getSimulatorControlPanel().setButtonState(SimulatorControlPanel.ACT_CUSTOMER,true);
 				dispose();
 				txCtrl.nullifyCustomerPanel();
 			}

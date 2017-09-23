@@ -10,6 +10,7 @@ package sg.edu.nus.iss.vmcs.machinery;
 import java.awt.*;
 import java.awt.event.*;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 
@@ -34,19 +35,17 @@ public class MachinerySimulatorPanel extends Dialog {
 	private StoreViewer cashDisplay;
 	private StoreViewer drinksDisplay;
 	private Checkbox doorDisplay;
-	private StoreController storeCtrl;
-	private MachineryController machineryCtrl;
 
 	/**
 	 * This constructor creates an instance of MachinerySimulatorPanel.
 	 * @param fr the parent frame.
 	 * @param machCtrl the MachineryController.
 	 */
-	public MachinerySimulatorPanel(Frame fr, MachineryController machCtrl) {
+	public MachinerySimulatorPanel(Frame fr) {
 		super(fr, TITLE, false);
 
-		machineryCtrl = machCtrl;
-		storeCtrl = machineryCtrl.getMainController().getStoreController();
+		StoreController storeCtrl = ControlFactory.getStoreController();
+		MachineryController machineryCtrl = ControlFactory.getMachineryController();
 
 		Label lb = new Label(TITLE);
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));

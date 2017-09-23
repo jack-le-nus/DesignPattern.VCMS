@@ -9,6 +9,7 @@ package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.*;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -36,7 +37,7 @@ public class DrinkDisplay extends Panel {
 	 */
 	public DrinkDisplay(MaintenanceController mctrl) {
 		mCtrl = mctrl;
-		storeCtrl = mCtrl.getMainController().getStoreController();
+		storeCtrl = ControlFactory.getStoreController();
 
 		this.setLayout(new BorderLayout());
 		int len;

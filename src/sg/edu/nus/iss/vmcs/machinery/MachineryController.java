@@ -9,6 +9,7 @@ package sg.edu.nus.iss.vmcs.machinery;
 
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.*;
 
 /**
@@ -18,10 +19,6 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class MachineryController {
-	/**This attribute reference to the MainController*/
-	public MainController mainCtrl;
-	/**This attribute reference to the StoreController*/
-	public StoreController storeCtrl;
 
 	private MachinerySimulatorPanel ml;
 	private Door door;
@@ -30,17 +27,8 @@ public class MachineryController {
 	 * This constructor creates an instance of MachineryController.
 	 * @param mctrl the MainController.
 	 */
-	public MachineryController(MainController mctrl) {
-		mainCtrl = mctrl;
-		storeCtrl = mctrl.getStoreController();
-	}
-
-	/**
-	 * This method returns the MainController.
-	 * @return the MainController.
-	 */
-	public MainController getMainController() {
-		return mainCtrl;
+	public MachineryController() {
+		
 	}
 
 	/**
@@ -67,9 +55,9 @@ public class MachineryController {
 	 * This method displays and initializes the MachinerySimulatorPanel.
 	 */
 	public void displayMachineryPanel() {
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		SimulatorControlPanel scp = ControlFactory.getSimulationController().getSimulatorControlPanel();
 		if (ml == null)
-			ml = new MachinerySimulatorPanel(scp, this);
+			ml = new MachinerySimulatorPanel(scp);
 		ml.display();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
 	}
@@ -89,7 +77,7 @@ public class MachineryController {
 			return;
 		}
 		ml.dispose();
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		SimulatorControlPanel scp = ControlFactory.getSimulationController().getSimulatorControlPanel();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, true);
 	}
 
@@ -113,7 +101,7 @@ public class MachineryController {
 		displayDoorState();
 		
 		//Disable Activate Customer Panel Button
-		mainCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+		ControlFactory.getSimulationController().getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
 	}
 
 	/* ************************************************************
@@ -163,7 +151,7 @@ public class MachineryController {
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void storeCoin(Coin c) throws VMCSException {
-		storeCtrl.storeCoin(c);
+		ControlFactory.getStoreController().storeCoin(c);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
 	}
@@ -176,7 +164,7 @@ public class MachineryController {
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void dispenseDrink(int idx) throws VMCSException {
-		storeCtrl.dispenseDrink(idx);
+		ControlFactory.getStoreController().dispenseDrink(idx);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
 
@@ -191,7 +179,7 @@ public class MachineryController {
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void giveChange(int idx, int numOfCoins) throws VMCSException {
-		storeCtrl.giveChange(idx, numOfCoins);
+		ControlFactory.getStoreController().giveChange(idx, numOfCoins);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
 	}

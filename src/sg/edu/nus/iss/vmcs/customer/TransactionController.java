@@ -17,6 +17,7 @@ package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.Frame;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
@@ -30,7 +31,6 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  * @version 1.0 2008-10-01
  */
 public class TransactionController {
-	private MainController mainCtrl;
 	private CustomerPanel custPanel;
 	private DispenseController dispenseCtrl;
 	private ChangeGiver changeGiver;
@@ -50,25 +50,16 @@ public class TransactionController {
 	 * @param mainCtrl the MainController.
 	 */
 	public TransactionController(MainController mainCtrl) {
-		this.mainCtrl = mainCtrl;
 		dispenseCtrl=new DispenseController(this);
 		coinReceiver=new CoinReceiver(this);
 		changeGiver=new ChangeGiver(this);
 	}
 
 	/**
-	 * This method returns the MainController.
-	 * @return the MainController.
-	 */
-	public MainController getMainController() {
-		return mainCtrl;
-	}
-
-	/**
 	 * This method displays and initialize the CustomerPanel.
 	 */
 	public void displayCustomerPanel() {
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
+		SimulatorControlPanel scp = ControlFactory.getSimulationController().getSimulatorControlPanel();
 	    custPanel = new CustomerPanel((Frame) scp, this);
 		custPanel.display();
 		dispenseCtrl.updateDrinkPanel();
@@ -96,7 +87,7 @@ public class TransactionController {
 	 */
 	public void startTransaction(int drinkIdentifier){
 		setSelection(drinkIdentifier);
-		StoreItem storeItem=mainCtrl.getStoreController().getStoreItem(Store.DRINK,drinkIdentifier);
+		StoreItem storeItem=ControlFactory.getStoreController().getStoreItem(Store.DRINK,drinkIdentifier);
 		DrinksBrand drinksBrand=(DrinksBrand)storeItem.getContent();
 		setPrice(drinksBrand.getPrice());
 		changeGiver.resetChange();
@@ -333,7 +324,7 @@ public class TransactionController {
 	 * This method refreshes the MachinerySimulatorPanel.
 	 */
 	public void refreshMachineryDisplay(){
-		mainCtrl.getMachineryController().refreshMachineryDisplay();
+		ControlFactory.getMachineryController().refreshMachineryDisplay();
 		
 	}
 	

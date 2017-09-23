@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.CashStore;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
 import sg.edu.nus.iss.vmcs.store.Coin;
@@ -38,8 +39,8 @@ public class CoinInputBox extends Panel{
 	 */
 	public CoinInputBox(TransactionController cctrl){
 		this.txCtrl=cctrl;
-		MainController mainCtrl=cctrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
+		MainController mainCtrl=ControlFactory.getMainController();
+		StoreController storeCtrl=ControlFactory.getStoreController();
 		int cashStoreSize=storeCtrl.getStoreSize(Store.CASH);
 		StoreItem[] cashStoreItems=storeCtrl.getStore(Store.CASH).getItems();
 		

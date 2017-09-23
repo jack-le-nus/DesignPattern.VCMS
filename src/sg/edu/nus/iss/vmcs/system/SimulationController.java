@@ -7,6 +7,7 @@
  */
 package sg.edu.nus.iss.vmcs.system;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
@@ -21,14 +22,12 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  */
 public class SimulationController {
 	private SimulatorControlPanel scp = null;
-	public  MainController        mCtrl = null;
 
 	/**
 	 * This constructor creates an instance of the SimulationController object.
 	 * @param ctrl the MainController.
 	 */
-	public SimulationController(MainController ctrl) {
-		mCtrl = ctrl;
+	public SimulationController() {
 		scp = new SimulatorControlPanel(this);
 	}
 
@@ -58,7 +57,7 @@ public class SimulationController {
 	 * when instructed by the MainController&#46;
 	 */
 	public void stop() {
-		mCtrl.closeDown();
+		ControlFactory.getMainController().closeDown();
 	}
 
 	/**
@@ -104,7 +103,7 @@ public class SimulationController {
 		//maintenanceCtrl = mCtrl.getMaintenanceController();
 		MachineryController machCtrl;
 
-		machCtrl = mCtrl.getMachineryController();
+		machCtrl = ControlFactory.getMachineryController();
 		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
 		try {
 			// activate when not login
@@ -133,7 +132,7 @@ public class SimulationController {
 	 */
 	public void setupMaintainer() {
 		MaintenanceController mctrl;
-		mctrl = mCtrl.getMaintenanceController();
+		mctrl = ControlFactory.getMaintenanceController();
 		scp.setActive(SimulatorControlPanel.ACT_MAINTAINER, false);
 		mctrl.displayMaintenancePanel();
 	}
@@ -152,16 +151,8 @@ public class SimulationController {
 	 */
 	public void setupCustomer() {
 		TransactionController cctrl;
-		cctrl = mCtrl.getTransactionController();
+		cctrl = ControlFactory.getTransactionController();
 		scp.setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
 		cctrl.displayCustomerPanel();
-	}
-
-	/**
-	 * This method returns the MainController.
-	 * @return the MainController.
-	 */
-	public MainController getMainController() {
-		return mCtrl;
 	}
 }//End of class SimulationController

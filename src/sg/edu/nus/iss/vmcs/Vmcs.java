@@ -48,8 +48,7 @@ public class Vmcs {
 	 * @param args the arguments for the main application.
 	 */
 	public static void main(String args[]) {
-		
-		Vmcs vmcs = new Vmcs("/Users/jackle/Documents/Materials/Design Patterns/Assignments/Day1/VMCS Sources/vmcs.properties");
+		Vmcs vmcs = new Vmcs("/Users/jackle/Documents/Materials/Design Patterns/Assignments/Day1/VMCS Sources/DesignPattern.VCMS/vmcs.properties");
 		vmcs.start();
 	}
 }//End of class Vmcs

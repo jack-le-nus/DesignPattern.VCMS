@@ -9,6 +9,8 @@ package sg.edu.nus.iss.vmcs.system;
 
 import java.io.IOException;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
+import sg.edu.nus.iss.vmcs.customer.DispenseController;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
@@ -22,12 +24,6 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class MainController {
-	private SimulationController  simulatorCtrl;
-	private MachineryController   machineryCtrl;
-	private MaintenanceController maintenanceCtrl;
-	private TransactionController txCtrl;
-	private StoreController       storeCtrl;
-
 	private String      propertyFile;
 
 	/**
@@ -47,6 +43,7 @@ public class MainController {
 	public void start() throws VMCSException {
 		try {
 			initialize();
+			SimulationController simulatorCtrl = ControlFactory.getSimulationController();
 			simulatorCtrl.displaySimulatorControlPanel();
 			simulatorCtrl.setSimulationActive(false);
 		} catch (VMCSException e) {
@@ -60,73 +57,10 @@ public class MainController {
 	 */
 	public void initialize() throws VMCSException {
 		try {
-			Environment.initialize(propertyFile);
-			CashPropertyLoader cashLoader =
-				new CashPropertyLoader(Environment.getCashPropFile());
-			DrinkPropertyLoader drinksLoader =
-				new DrinkPropertyLoader(Environment.getDrinkPropFile());
-			cashLoader.initialize();
-			drinksLoader.initialize();
-			storeCtrl = new StoreController(cashLoader, drinksLoader);
-			storeCtrl.initialize();
-			simulatorCtrl = new SimulationController(this);
-			machineryCtrl = new MachineryController(this);
-			machineryCtrl.initialize();
-			maintenanceCtrl = new MaintenanceController(this);
-			txCtrl=new TransactionController(this);
-		} catch (IOException e) {
-			throw new VMCSException(
-				"MainController.initialize",
-				e.getMessage());
+			ControlFactory.initialize(propertyFile);
+		} catch (VMCSException e) {
+			throw e;
 		}
-	}
-
-	/**
-	 * This method returns the SimulationController.
-	 * @return the SimulationController.
-	 */
-	public SimulationController getSimulationController() {
-		return simulatorCtrl;
-	}
-
-	/**
-	 * This method returns the SimulatorControlPanel.
-	 * @return the SimulatorControlPanel.
-	 */
-	public SimulatorControlPanel getSimulatorControlPanel() {
-		return simulatorCtrl.getSimulatorControlPanel();
-	}
-
-	/**
-	 * This method returns the StoreController.
-	 * @return the StoreController.
-	 */
-	public StoreController getStoreController() {
-		return storeCtrl;
-	}
-
-	/**
-	 * This method returns the MachineryController&#46; 
-	 * @return the MachineryController&#46;
-	 */
-	public MachineryController getMachineryController() {
-		return machineryCtrl;
-	}
-
-	/**
-	 * This method returns the MaintenanceController&#46;
-	 * @return the MaintenanceController&#46;
-	 */
-	public MaintenanceController getMaintenanceController() {
-		return maintenanceCtrl;
-	}
-	
-	/**
-	 * This method returns the TransactionController.
-	 * @return the TransactionController.
-	 */
-	public TransactionController getTransactionController() {
-		return txCtrl;
 	}
 
 	/**
@@ -137,6 +71,11 @@ public class MainController {
 	 * created for simulating the vending machine&#46;
 	 */
 	public void closeDown() {
+	    MachineryController machineryCtrl = ControlFactory.getMachineryController();
+	    MaintenanceController maintenanceCtrl = ControlFactory.getMaintenanceController();
+	    SimulationController  simulatorCtrl = ControlFactory.getSimulationController();
+	    StoreController storeCtrl = ControlFactory.getStoreController();
+	    
 		try {
 			storeCtrl.closeDown();
 		} catch (Exception e) {

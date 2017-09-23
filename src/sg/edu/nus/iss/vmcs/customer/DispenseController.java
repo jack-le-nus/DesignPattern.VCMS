@@ -7,6 +7,7 @@
  */
 package sg.edu.nus.iss.vmcs.customer;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
@@ -41,9 +42,9 @@ public class DispenseController {
 			return;
 		}
 		updateDrinkSelection(-1);
-		int storeSize=txCtrl.getMainController().getStoreController().getStoreSize(Store.DRINK);
+		int storeSize=ControlFactory.getStoreController().getStoreSize(Store.DRINK);
 		for(int i=0;i<storeSize;i++){
-			StoreItem storeItem=txCtrl.getMainController().getStoreController().getStoreItem(Store.DRINK,i);
+			StoreItem storeItem=ControlFactory.getStoreController().getStoreItem(Store.DRINK,i);
 			int quantity=storeItem.getQuantity();
 			DrinksBrand drinksBrand=(DrinksBrand)storeItem.getContent();
 			String name=drinksBrand.getName();
@@ -66,13 +67,12 @@ public class DispenseController {
 	 * @param allow TRUE to activate, FALSE to deactivate the Drink Selection Box.
 	 */
 	public void allowSelection(boolean allow){
-		MainController mainCtrl=txCtrl.getMainController();
 		CustomerPanel custPanel=txCtrl.getCustomerPanel();
 		if(custPanel==null){
 			return;
 		}
 		DrinkSelectionBox drinkSelectionBox=custPanel.getDrinkSelectionBox();
-		StoreController storeCtrl=mainCtrl.getStoreController();
+		StoreController storeCtrl=ControlFactory.getStoreController();
 		int storeSize=storeCtrl.getStoreSize(Store.DRINK);
 		for(int i=0;i<storeSize;i++){
 			drinkSelectionBox.setState(i,allow);
@@ -107,9 +107,8 @@ public class DispenseController {
 	 */
 	public boolean dispenseDrink(int selectedBrand){
 		try{
-			txCtrl.getMainController().getMachineryController().dispenseDrink(selectedBrand);
-			MainController mainCtrl=txCtrl.getMainController();
-			StoreController storeCtrl=mainCtrl.getStoreController();
+			ControlFactory.getMachineryController().dispenseDrink(selectedBrand);
+			StoreController storeCtrl=ControlFactory.getStoreController();
 			StoreItem drinkStoreItem=storeCtrl.getStore(Store.DRINK).getStoreItem(selectedBrand);
 			StoreObject storeObject=drinkStoreItem.getContent();
 			DrinksBrand drinksBrand=(DrinksBrand)storeObject;

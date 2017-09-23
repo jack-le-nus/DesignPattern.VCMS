@@ -10,6 +10,8 @@ package sg.edu.nus.iss.vmcs.system;
 import java.awt.*;
 import java.awt.event.*;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
+
 /**
  * This panel is displayed when the system is started up&#46; It enables the user (the Controller) to:
  * <br>
@@ -72,7 +74,7 @@ public class SimulatorControlPanel extends Frame {
         super (title);
 
         this.simulationCtrl = controller;
-        this.mainCtrl = simulationCtrl.getMainController();
+        this.mainCtrl = ControlFactory.getMainController();
 
         setLayout(new GridLayout(0, 1));
 
@@ -98,7 +100,7 @@ public class SimulatorControlPanel extends Frame {
 
         addWindowListener(new WindowAdapter() {
 	    public void windowClosing(WindowEvent e) {
-                simulationCtrl.getMainController().closeDown();
+	    	ControlFactory.getMainController().closeDown();
                 dispose();
             }
 	});

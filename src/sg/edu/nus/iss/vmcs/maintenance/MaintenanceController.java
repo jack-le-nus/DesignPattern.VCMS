@@ -9,6 +9,7 @@ package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.Frame;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
@@ -28,7 +29,6 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class MaintenanceController {
-	private MainController mCtrl;
 	private MaintenancePanel mpanel;
 	private AccessManager am;
 
@@ -36,24 +36,15 @@ public class MaintenanceController {
 	 * This constructor creates an instance of the MaintenanceController.
 	 * @param mctrl the MainController.
 	 */
-	public MaintenanceController(MainController mctrl) {
-		mCtrl = mctrl;
+	public MaintenanceController() {
 		am = new AccessManager(this);
-	}
-
-	/**
-	 * This method returns the MainController.
-	 * @return the MainController.
-	 */
-	public MainController getMainController() {
-		return mCtrl;
 	}
 
 	/**
 	 * This method setup the maintenance panel and display it.
 	 */
 	public void displayMaintenancePanel() {
-		SimulatorControlPanel scp = mCtrl.getSimulatorControlPanel();
+		SimulatorControlPanel scp = ControlFactory.getSimulationController().getSimulatorControlPanel();
 		if (mpanel == null)
 			mpanel = new MaintenancePanel((Frame) scp, this);
 		mpanel.display();
@@ -96,10 +87,10 @@ public class MaintenanceController {
 			// login successful
 			mpanel.setActive(MaintenancePanel.WORKING, true);
 			mpanel.setActive(MaintenancePanel.PSWD, false);
-			MachineryController machctrl = mCtrl.getMachineryController();
+			MachineryController machctrl = ControlFactory.getMachineryController();
 			machctrl.setDoorState(false);
 			//Terminate customer transaction
-			mCtrl.getTransactionController().terminateTransaction();
+			ControlFactory.getTransactionController().terminateTransaction();
 		}
 	}
 
@@ -109,7 +100,7 @@ public class MaintenanceController {
 	 * @param idx the index of the Coin.
 	 */
 	public void displayCoin(int idx) {
-		StoreController sctrl = mCtrl.getStoreController();
+		StoreController sctrl = ControlFactory.getStoreController();
 		CashStoreItem item;
 		try {
 			item = (CashStoreItem) sctrl.getStoreItem(Store.CASH, idx);
@@ -127,7 +118,7 @@ public class MaintenanceController {
 	 * @param idx the index of the drinks.
 	 */
 	public void displayDrinks(int idx) {
-		StoreController sctrl = mCtrl.getStoreController();
+		StoreController sctrl = ControlFactory.getStoreController();
 		DrinksStoreItem item;
 		try {
 			item = (DrinksStoreItem) sctrl.getStoreItem(Store.DRINK, idx);
@@ -145,7 +136,7 @@ public class MaintenanceController {
 	 * @param pr the price of the drinks.
 	 */
 	public void setPrice(int pr) {
-		StoreController sctrl = mCtrl.getStoreController();
+		StoreController sctrl = ControlFactory.getStoreController();
 		int curIdx = mpanel.getCurIdx();
 		sctrl.setPrice(curIdx, pr);
 		mpanel.getDrinksDisplay().getPriceDisplay().setValue(pr + "C");
@@ -156,7 +147,7 @@ public class MaintenanceController {
 	 * This method is invoked by the TotalCashButtonListener.
 	 */
 	public void getTotalCash() {
-		StoreController sctrl = mCtrl.getStoreController();
+		StoreController sctrl = ControlFactory.getStoreController();
 		int tc = sctrl.getTotalCash();
 		mpanel.displayTotalCash(tc);
 
@@ -168,8 +159,8 @@ public class MaintenanceController {
 	 * It get all the cash from store and set store cash 0.
 	 */
 	public void transferAll() {
-		StoreController sctrl = mCtrl.getStoreController();
-		MachineryController machctrl = mCtrl.getMachineryController();
+		StoreController sctrl = ControlFactory.getStoreController();
+		MachineryController machctrl = ControlFactory.getMachineryController();
 
 		int cc; // coin quantity;
 
@@ -192,7 +183,7 @@ public class MaintenanceController {
 	 * @param qty the quantity of the StoreItem.
 	 */
 	public void changeStoreQty(char type, int idx, int qty) {
-		//StoreController sctrl = mCtrl.getStoreController();
+		//StoreController sctrl = ControlFactory.getStoreController();
 		try {
 			mpanel.updateQtyDisplay(type, idx, qty);
 			mpanel.initCollectCash();
@@ -216,7 +207,7 @@ public class MaintenanceController {
 	 */
 	public void logoutMaintainer() {
 
-		MachineryController machctrl = mCtrl.getMachineryController();
+		MachineryController machctrl = ControlFactory.getMachineryController();
 
 		boolean ds = machctrl.isDoorClosed();
 
@@ -232,12 +223,12 @@ public class MaintenanceController {
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
 		
 		//Refresh Customer Panel
-		CustomerPanel custPanel=mCtrl.getTransactionController().getCustomerPanel();
+		CustomerPanel custPanel=ControlFactory.getTransactionController().getCustomerPanel();
 		if(custPanel==null){
-			mCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
+			ControlFactory.getSimulationController().getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
 		}
 		else{
-			mCtrl.getTransactionController().refreshCustomerPanel();
+			ControlFactory.getTransactionController().refreshCustomerPanel();
 		}
 	}
 

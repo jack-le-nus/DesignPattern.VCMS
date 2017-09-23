@@ -7,6 +7,7 @@
  */
 package sg.edu.nus.iss.vmcs.customer;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
 import sg.edu.nus.iss.vmcs.store.Coin;
 import sg.edu.nus.iss.vmcs.store.Store;
@@ -52,8 +53,7 @@ public class ChangeGiver {
 			return true;
 		try{
 			int changeBal=changeRequired;
-			MainController mainCtrl=txCtrl.getMainController();
-			StoreController storeCtrl=mainCtrl.getStoreController();
+			StoreController storeCtrl= ControlFactory.getStoreController();
 			int cashStoreSize=storeCtrl.getStoreSize(Store.CASH); 
 			for(int i=cashStoreSize-1;i>=0;i--){
 				StoreItem cashStoreItem=storeCtrl.getStore(Store.CASH).getStoreItem(i);
@@ -66,7 +66,7 @@ public class ChangeGiver {
 					quantityRequired++;
 					quantity--;
 				}
-				txCtrl.getMainController().getMachineryController().giveChange(i,quantityRequired);
+				ControlFactory.getMachineryController().giveChange(i,quantityRequired);
 			}
 			txCtrl.getCustomerPanel().setChange(changeRequired-changeBal);
 			if(changeBal>0)
@@ -88,8 +88,7 @@ public class ChangeGiver {
 		if(custPanel==null)
 			return;
 		boolean isAnyDenoEmpty=false;
-		MainController mainCtrl=txCtrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
+		StoreController storeCtrl=ControlFactory.getStoreController();
 		StoreItem[] cashStoreItems=storeCtrl.getStore(Store.CASH).getItems();
 		for(int i=0;i<cashStoreItems.length;i++){
 			StoreItem storeItem=cashStoreItems[i];

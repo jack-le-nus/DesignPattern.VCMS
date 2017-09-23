@@ -9,6 +9,7 @@ package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.*;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -36,7 +37,7 @@ public class CoinDisplay extends Panel {
 	 */
 	public CoinDisplay(MaintenanceController mctrl) {
 		mCtrl = mctrl;
-		storeCtrl = mCtrl.getMainController().getStoreController();
+		storeCtrl = ControlFactory.getStoreController();
 
 		len = storeCtrl.getStoreSize(Store.CASH);
 		StoreItem[] items = storeCtrl.getStoreItems(Store.CASH);

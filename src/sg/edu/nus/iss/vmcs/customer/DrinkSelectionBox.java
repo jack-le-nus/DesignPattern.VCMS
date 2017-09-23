@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Panel;
 
+import sg.edu.nus.iss.vmcs.ControlFactory;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
 import sg.edu.nus.iss.vmcs.store.Store;
@@ -37,8 +38,8 @@ public class DrinkSelectionBox extends Panel{
 	 */
 	public DrinkSelectionBox(TransactionController txCtrl){
 		this.txCtrl=txCtrl;
-		MainController mainCtrl=txCtrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
+		MainController mainCtrl=ControlFactory.getMainController();
+		StoreController storeCtrl=ControlFactory.getStoreController();
 		int drinkStoreSize=storeCtrl.getStoreSize(Store.DRINK);
 		StoreItem[] drinkStoreItems=storeCtrl.getStore(Store.DRINK).getItems();
 		
@@ -85,8 +86,8 @@ public class DrinkSelectionBox extends Panel{
 	public void setActive(boolean active){
 		if(drinkSelectionItems==null||drinkSelectionItems.length==0)
 			return;
-		MainController mainCtrl=txCtrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
+		MainController mainCtrl=ControlFactory.getMainController();
+		StoreController storeCtrl=ControlFactory.getStoreController();
 		for(int i=0;i<drinkSelectionItems.length;i++){
 			DrinkSelectionItem item=drinkSelectionItems[i];
 			StoreItem storeItem=storeCtrl.getStoreItem(Store.DRINK, i);
