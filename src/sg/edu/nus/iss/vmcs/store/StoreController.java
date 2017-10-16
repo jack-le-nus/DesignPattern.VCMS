@@ -9,6 +9,12 @@ package sg.edu.nus.iss.vmcs.store;
 
 import java.io.IOException;
 
+import sg.edu.nus.iss.vmcs.ApplicationMediator;
+import sg.edu.nus.iss.vmcs.BaseController;
+import sg.edu.nus.iss.vmcs.MediatorNotification;
+import sg.edu.nus.iss.vmcs.NotificationType;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
+
 /**
  * This control object manages changes in CashStore attributes and 
  * the DrinksStore attributes.
@@ -26,7 +32,7 @@ import java.io.IOException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreController {
+public class StoreController extends BaseController {
 	private CashStore cStore;
 	private DrinksStore dStore;
 
@@ -40,7 +46,8 @@ public class StoreController {
 	 */
 	public StoreController(
 		PropertyLoader cashLoader,
-		PropertyLoader drinksLoader) {
+		PropertyLoader drinksLoader, ApplicationMediator mediator) {
+		super(mediator);
 		this.cashLoader = cashLoader;
 		this.drinksLoader = drinksLoader;
 	}
@@ -306,5 +313,13 @@ public class StoreController {
 		item = (CashStoreItem) getStoreItem(Store.CASH, idx);
 		for (int i = 0; i < numOfCoins; i++)
 			item.decrement();
+	}
+
+	@Override
+	public Object handleMessage(MediatorNotification notification) {
+		if (notification.getType() == NotificationType.TransferAll) {
+			return transferAll();
+		}
+		return null;
 	}
 }//End of class StoreController

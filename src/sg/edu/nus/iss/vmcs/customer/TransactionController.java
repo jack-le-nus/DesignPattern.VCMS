@@ -17,6 +17,10 @@ package sg.edu.nus.iss.vmcs.customer;
 
 import java.awt.Frame;
 
+import sg.edu.nus.iss.vmcs.ApplicationMediator;
+import sg.edu.nus.iss.vmcs.BaseController;
+import sg.edu.nus.iss.vmcs.MediatorNotification;
+import sg.edu.nus.iss.vmcs.NotificationType;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
@@ -29,7 +33,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class TransactionController {
+public class TransactionController extends BaseController {
 	private MainController mainCtrl;
 	private CustomerPanel custPanel;
 	private DispenseController dispenseCtrl;
@@ -49,7 +53,8 @@ public class TransactionController {
 	 * This constructor creates an instance of the TransactionController.
 	 * @param mainCtrl the MainController.
 	 */
-	public TransactionController(MainController mainCtrl) {
+	public TransactionController(MainController mainCtrl, ApplicationMediator mediator) {
+		super(mediator);
 		this.mainCtrl = mainCtrl;
 		dispenseCtrl=new DispenseController(this);
 		coinReceiver=new CoinReceiver(this);
@@ -155,7 +160,7 @@ public class TransactionController {
 		coinReceiver.storeCash();
 		dispenseCtrl.allowSelection(true);
 		
-		refreshMachineryDisplay();
+		mediator.controllerChanged(this, new MediatorNotification(NotificationType.RefreshMachineryPanel));
 		System.out.println("CompleteTransaction: End");
 	}
 	
@@ -169,7 +174,7 @@ public class TransactionController {
 		System.out.println("TerminateFault: Begin");
 		dispenseCtrl.allowSelection(false);
 		coinReceiver.refundCash();
-		refreshMachineryDisplay();
+		mediator.controllerChanged(this, new MediatorNotification(NotificationType.RefreshMachineryPanel));
 		System.out.println("TerminateFault: End");
 	}
 	
@@ -193,7 +198,6 @@ public class TransactionController {
 		if(custPanel!=null){
 			custPanel.setTerminateButtonActive(false);
 		}
-		refreshMachineryDisplay();
 		System.out.println("TerminateTransaction: End");
 	}
 	
@@ -205,7 +209,7 @@ public class TransactionController {
 		coinReceiver.stopReceive();
 		coinReceiver.refundCash();
 		dispenseCtrl.allowSelection(true);
-		refreshMachineryDisplay();
+		mediator.controllerChanged(this, new MediatorNotification(NotificationType.RefreshMachineryPanel));
 		System.out.println("CancelTransaction: End");
 	}
 	
@@ -330,17 +334,28 @@ public class TransactionController {
 	}
 	
 	/**
-	 * This method refreshes the MachinerySimulatorPanel.
-	 */
-	public void refreshMachineryDisplay(){
-		mainCtrl.getMachineryController().refreshMachineryDisplay();
-		
-	}
-	
-	/**
 	 * This method will nullify reference to customer panel.
 	 */
 	public void nullifyCustomerPanel(){
 		custPanel=null;
+	}
+
+	@Override
+	public Object handleMessage(MediatorNotification notification) {
+		if(notification.getType() == NotificationType.LoginMaintainer) {
+			Boolean success = (Boolean)notification.getObject()[0];
+			if(success == true) {
+				terminateTransaction();
+			}
+		} else if (notification.getType() == NotificationType.LogoutMaintainer) {
+			CustomerPanel custPanel= getCustomerPanel();
+			if(custPanel!=null) {
+				refreshCustomerPanel();
+			}
+			return custPanel == null;
+		} else if (notification.getType() == NotificationType.SetupCustomer) {
+			displayCustomerPanel();
+		}
+		return null;
 	}
 }//End of class TransactionController

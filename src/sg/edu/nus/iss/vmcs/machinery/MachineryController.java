@@ -9,6 +9,11 @@ package sg.edu.nus.iss.vmcs.machinery;
 
 import sg.edu.nus.iss.vmcs.system.*;
 import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.ApplicationMediator;
+import sg.edu.nus.iss.vmcs.BaseController;
+import sg.edu.nus.iss.vmcs.MediatorNotification;
+import sg.edu.nus.iss.vmcs.NotificationType;
+import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.store.*;
 
 /**
@@ -17,7 +22,7 @@ import sg.edu.nus.iss.vmcs.store.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MachineryController {
+public class MachineryController extends BaseController {
 	/**This attribute reference to the MainController*/
 	public MainController mainCtrl;
 	/**This attribute reference to the StoreController*/
@@ -27,11 +32,12 @@ public class MachineryController {
 	private Door door;
 
 	/**
-	 * This constructor creates an instance of MachineryController.
+	 * This constructor creates an instance of 
 	 * @param mctrl the MainController.
 	 */
-	public MachineryController(MainController mctrl) {
-		mainCtrl = mctrl;
+	public MachineryController(MainController mctrl, ApplicationMediator mediator) {
+		super(mediator);
+		this.mainCtrl = mctrl;
 		storeCtrl = mctrl.getStoreController();
 	}
 
@@ -71,7 +77,9 @@ public class MachineryController {
 		if (ml == null)
 			ml = new MachinerySimulatorPanel(scp, this);
 		ml.display();
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, false);
+		MediatorNotification notification = new MediatorNotification(NotificationType.SetActiveSimulatorPanel);
+		notification.setObject(SimulatorControlPanel.ACT_MACHINERY, false);
+		mediator.controllerChanged(this, notification);
 	}
 
 	/**
@@ -89,8 +97,9 @@ public class MachineryController {
 			return;
 		}
 		ml.dispose();
-		SimulatorControlPanel scp = mainCtrl.getSimulatorControlPanel();
-		scp.setActive(SimulatorControlPanel.ACT_MACHINERY, true);
+		MediatorNotification notification = new MediatorNotification(NotificationType.SetActiveSimulatorPanel);
+		notification.setObject(SimulatorControlPanel.ACT_MACHINERY, true);
+		mediator.controllerChanged(this, notification);
 	}
 
 	/* ************************************************************
@@ -113,7 +122,9 @@ public class MachineryController {
 		displayDoorState();
 		
 		//Disable Activate Customer Panel Button
-		mainCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, false);
+//		MediatorNotification notification = new MediatorNotification(NotificationType.SetActiveSimulatorPanel);
+//		notification.setObject(SimulatorControlPanel.ACT_CUSTOMER, false);
+//		mediator.controllerChanged(this, notification);
 	}
 
 	/* ************************************************************
@@ -203,5 +214,43 @@ public class MachineryController {
 		if(ml!=null){
 			ml.refresh();
 		}
+	}
+
+	@Override
+	public Object handleMessage(MediatorNotification notification) {
+		if(notification.getType() == NotificationType.LoginMaintainer) {
+			Boolean success = (Boolean)notification.getObject()[0];
+			if(success == true) {
+				setDoorState(false);
+			}
+		} else if (notification.getType() == NotificationType.LogoutMaintainer) {
+			return isDoorClosed();
+		} else if (notification.getType() == NotificationType.TransferAll) {
+			try {
+				displayCoinStock();
+			} catch (VMCSException e) {
+				System.out.println("transferAll:" + e);
+			}
+		} else if (notification.getType() == NotificationType.RefreshMachineryPanel) {
+			refreshMachineryDisplay();
+		} else if (notification.getType() == NotificationType.SetupMachinery) {
+			try {
+				// activate when not login
+				// always diaply the door locked; isOpen false
+				displayMachineryPanel();
+
+				// display drink stock;
+				displayDrinkStock();
+
+				// display coin quantity;
+				displayCoinStock();
+
+				displayDoorState();
+			} catch (VMCSException e) {
+				System.out.println("Machinery.setupSimulator:" + e);
+			}
+		}
+		
+		return null;
 	}
 }//End of class MachineryController

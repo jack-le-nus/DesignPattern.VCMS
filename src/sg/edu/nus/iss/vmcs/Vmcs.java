@@ -49,7 +49,7 @@ public class Vmcs {
 	 */
 	public static void main(String args[]) {
 		
-		Vmcs vmcs = new Vmcs("/Users/jackle/Documents/Materials/Design Patterns/Assignments/Day1/VMCS Sources/vmcs.properties");
+		Vmcs vmcs = new Vmcs("/Users/jackle/Documents/Materials/Design Patterns/Assignments/Github/DesignPattern.VCMS/vmcs.properties");
 		vmcs.start();
 	}
 }//End of class Vmcs

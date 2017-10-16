@@ -9,6 +9,10 @@ package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.Frame;
 
+import sg.edu.nus.iss.vmcs.ApplicationMediator;
+import sg.edu.nus.iss.vmcs.BaseController;
+import sg.edu.nus.iss.vmcs.MediatorNotification;
+import sg.edu.nus.iss.vmcs.NotificationType;
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
@@ -27,7 +31,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class MaintenanceController {
+public class MaintenanceController extends BaseController {
 	private MainController mCtrl;
 	private MaintenancePanel mpanel;
 	private AccessManager am;
@@ -36,7 +40,8 @@ public class MaintenanceController {
 	 * This constructor creates an instance of the MaintenanceController.
 	 * @param mctrl the MainController.
 	 */
-	public MaintenanceController(MainController mctrl) {
+	public MaintenanceController(MainController mctrl, ApplicationMediator mediator) {
+		super(mediator);
 		mCtrl = mctrl;
 		am = new AccessManager(this);
 	}
@@ -89,18 +94,17 @@ public class MaintenanceController {
 	 * will be used to accomplish this&#46
 	 * @param st If TRUE then login successfully, otherwise login fails.
 	 */
-	public void loginMaintainer(boolean st) {
-		mpanel.displayPasswordState(st);
+	public boolean loginMaintainer(boolean success) {
+		this.mediator.controllerChanged(this, new MediatorNotification(NotificationType.LoginMaintainer, success));
+		mpanel.displayPasswordState(success);
 		mpanel.clearPassword();
-		if (st == true) {
+		if (success == true) {
 			// login successful
 			mpanel.setActive(MaintenancePanel.WORKING, true);
 			mpanel.setActive(MaintenancePanel.PSWD, false);
-			MachineryController machctrl = mCtrl.getMachineryController();
-			machctrl.setDoorState(false);
-			//Terminate customer transaction
-			mCtrl.getTransactionController().terminateTransaction();
 		}
+		
+		return success;
 	}
 
 	/**
@@ -161,22 +165,19 @@ public class MaintenanceController {
 		mpanel.displayTotalCash(tc);
 
 	}
+	
+	public void transferAll() {
+		this.mediator.controllerChanged(this, new MediatorNotification(NotificationType.TransferAll));
+	}
 
 	/**
 	 * This method is to facilitate the transfer of all cash in CashStore to the maintainer&#46
 	 * This method is invoked by the TransferCashButtonListener&#46
 	 * It get all the cash from store and set store cash 0.
 	 */
-	public void transferAll() {
-		StoreController sctrl = mCtrl.getStoreController();
-		MachineryController machctrl = mCtrl.getMachineryController();
-
-		int cc; // coin quantity;
-
+	public void transferAll(int cc) {
 		try {
-			cc = sctrl.transferAll();
 			mpanel.displayCoins(cc);
-			machctrl.displayCoinStock();
 			// the cash qty current is displayed in the Maintenance panel needs to be update to be 0;
 			// not required.
 			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
@@ -201,6 +202,10 @@ public class MaintenanceController {
 			System.out.println("MaintenanceController.changeStoreQty:" + e);
 		}
 	}
+	
+	public void logoutMaintainer() {
+		this.mediator.controllerChanged(this, new MediatorNotification(NotificationType.LogoutMaintainer));
+	}
 
 	/**
 	 * When the MaintenanceController receives a message saying that the Maintainer
@@ -214,13 +219,8 @@ public class MaintenanceController {
 	 * 3- Update the CustomerPanel and permit Customer transaction to re-start&#46
 	 * This method is invoked by the exit button listener.
 	 */
-	public void logoutMaintainer() {
-
-		MachineryController machctrl = mCtrl.getMachineryController();
-
-		boolean ds = machctrl.isDoorClosed();
-
-		if (ds == false) {
+	public void logoutMaintainer(boolean isMachineryDoorClosed) {
+		if (isMachineryDoorClosed == false) {
 			MessageDialog msg =
 				new MessageDialog(
 					mpanel,
@@ -230,15 +230,6 @@ public class MaintenanceController {
 		}
 
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
-		
-		//Refresh Customer Panel
-		CustomerPanel custPanel=mCtrl.getTransactionController().getCustomerPanel();
-		if(custPanel==null){
-			mCtrl.getSimulatorControlPanel().setActive(SimulatorControlPanel.ACT_CUSTOMER, true);
-		}
-		else{
-			mCtrl.getTransactionController().refreshCustomerPanel();
-		}
 	}
 
 	/**
@@ -248,5 +239,17 @@ public class MaintenanceController {
 	public void closeDown() {
 		if (mpanel != null)
 			mpanel.closeDown();
+	}
+
+	@Override
+	public Object handleMessage(MediatorNotification notification) {
+		if (notification.getType() == NotificationType.LogoutMaintainer) {
+			this.logoutMaintainer((Boolean)notification.getObject()[0]);
+		} else if (notification.getType() == NotificationType.TransferAll) {
+			transferAll((Integer)notification.getObject()[0]);
+		} else if (notification.getType() == NotificationType.SetupMaintainer) {
+			displayMaintenancePanel();
+		}
+		return null;
 	}
 }//End of class MaintenanceController

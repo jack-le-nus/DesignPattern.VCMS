@@ -9,6 +9,8 @@ package sg.edu.nus.iss.vmcs.system;
 
 import java.io.IOException;
 
+import sg.edu.nus.iss.vmcs.ApplicationMediator;
+import sg.edu.nus.iss.vmcs.AuthenticationMediatorImpl;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
@@ -27,6 +29,7 @@ public class MainController {
 	private MaintenanceController maintenanceCtrl;
 	private TransactionController txCtrl;
 	private StoreController       storeCtrl;
+	private ApplicationMediator mediator;
 
 	private String      propertyFile;
 
@@ -35,7 +38,11 @@ public class MainController {
 	 * @param propertyFile the property file name.
 	 */
 	public MainController(String propertyFile) {
+		if(propertyFile == null) {
+			propertyFile = "/Users/jackle/Documents/Materials/Design Patterns/Assignments/Github/DesignPattern.VCMS/vmcs.properties";
+		}
 		this.propertyFile = propertyFile;
+		
 	}
 
 	/**
@@ -67,18 +74,27 @@ public class MainController {
 				new DrinkPropertyLoader(Environment.getDrinkPropFile());
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			storeCtrl = new StoreController(cashLoader, drinksLoader);
+			mediator = new AuthenticationMediatorImpl();
+			storeCtrl = new StoreController(cashLoader, drinksLoader, mediator);
 			storeCtrl.initialize();
-			simulatorCtrl = new SimulationController(this);
-			machineryCtrl = new MachineryController(this);
+			simulatorCtrl = new SimulationController(this, mediator);
+			machineryCtrl = new MachineryController(this, mediator);
 			machineryCtrl.initialize();
-			maintenanceCtrl = new MaintenanceController(this);
-			txCtrl=new TransactionController(this);
+			maintenanceCtrl = new MaintenanceController(this, mediator);
+			txCtrl=new TransactionController(this, mediator);
+			
+			
+			
+			
 		} catch (IOException e) {
 			throw new VMCSException(
 				"MainController.initialize",
 				e.getMessage());
 		}
+	}
+	
+	public ApplicationMediator getAuthenticationMediator() {
+		return mediator;
 	}
 
 	/**

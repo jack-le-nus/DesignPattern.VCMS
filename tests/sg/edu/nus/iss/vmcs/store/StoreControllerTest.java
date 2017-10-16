@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import sg.edu.nus.iss.vmcs.AuthenticationMediatorImpl;
 import sg.edu.nus.iss.vmcs.system.CashPropertyLoader;
 import sg.edu.nus.iss.vmcs.system.DrinkPropertyLoader;
 import sg.edu.nus.iss.vmcs.system.Environment;
@@ -25,6 +26,7 @@ public class StoreControllerTest extends TestCase{
 	
 	@Test
 	public void testStoreControllerConstructor() throws Exception{
+		propertyFilename = "/Users/jackle/Documents/Materials/Design Patterns/Assignments/Github/DesignPattern.VCMS/vmcs.properties";
 		Environment.initialize(propertyFilename);
 		CashPropertyLoader cashLoader =
 			new CashPropertyLoader(Environment.getCashPropFile());
@@ -33,7 +35,7 @@ public class StoreControllerTest extends TestCase{
 		cashLoader.initialize();
 		drinksLoader.initialize();
 		//Act
-		StoreController storeController=new StoreController(cashLoader, drinksLoader);
+		StoreController storeController=new StoreController(cashLoader, drinksLoader, new AuthenticationMediatorImpl());
 		storeController.initialize();
 		//Assert
 		assertNotNull(storeController);

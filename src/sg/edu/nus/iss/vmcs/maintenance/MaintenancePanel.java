@@ -122,7 +122,7 @@ public class MaintenancePanel extends Dialog {
 		totalCash.addListener(tl);
 
 		transferCash = new Button("Press to Collect All Cash");
-		transferCash.addActionListener(new TransferCashButtonListener(mctrl));
+		transferCash.addActionListener(new TransferCashButtonListener(mc));
 
 		Panel tp6 = new Panel();
 		tp6.setLayout(new FlowLayout());
