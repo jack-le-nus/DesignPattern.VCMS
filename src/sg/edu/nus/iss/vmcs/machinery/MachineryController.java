@@ -26,7 +26,8 @@ public class MachineryController extends BaseController {
 	/**This attribute reference to the MainController*/
 	public MainController mainCtrl;
 	/**This attribute reference to the StoreController*/
-	public StoreController storeCtrl;
+	public DrinkStoreController drinkStoreCtrl;
+	public CashStoreController cashStoreCtrl;
 
 	private MachinerySimulatorPanel ml;
 	private Door door;
@@ -38,7 +39,8 @@ public class MachineryController extends BaseController {
 	public MachineryController(MainController mctrl, ApplicationMediator mediator) {
 		super(mediator);
 		this.mainCtrl = mctrl;
-		storeCtrl = mctrl.getStoreController();
+		cashStoreCtrl = mctrl.getCashStoreController();
+		drinkStoreCtrl = mctrl.getDrinksStoreController();
 	}
 
 	/**
@@ -174,7 +176,7 @@ public class MachineryController extends BaseController {
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void storeCoin(Coin c) throws VMCSException {
-		storeCtrl.storeCoin(c);
+		this.cashStoreCtrl.storeCoin(c);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
 	}
@@ -187,7 +189,7 @@ public class MachineryController extends BaseController {
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void dispenseDrink(int idx) throws VMCSException {
-		storeCtrl.dispenseDrink(idx);
+		this.drinkStoreCtrl.dispenseDrink(idx);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
 
@@ -202,7 +204,7 @@ public class MachineryController extends BaseController {
 	 * @throws VMCSException if fail to update cash store display.
 	 */
 	public void giveChange(int idx, int numOfCoins) throws VMCSException {
-		storeCtrl.giveChange(idx, numOfCoins);
+		this.cashStoreCtrl.giveChange(idx, numOfCoins);
 		if (ml != null)
 			ml.getCashStoreDisplay().update();
 	}

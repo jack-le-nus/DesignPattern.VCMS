@@ -73,7 +73,7 @@ public class CoinReceiver {
 	 * @param weight the weight of the coin received&#46;
 	 */
 	public void receiveCoin(double weight){
-		CashStore cashStore=(CashStore)txCtrl.getMainController().getStoreController().getStore(Store.CASH);
+		CashStore cashStore=(CashStore)txCtrl.getMainController().getCashStoreController().getStore();
 		Coin coin=cashStore.findCoin(weight);
 		if(coin==null){
 			txCtrl.getCustomerPanel().displayInvalidCoin(true);

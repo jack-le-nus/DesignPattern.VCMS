@@ -14,7 +14,10 @@ import sg.edu.nus.iss.vmcs.AuthenticationMediatorImpl;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
-import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.CashStore;
+import sg.edu.nus.iss.vmcs.store.CashStoreController;
+import sg.edu.nus.iss.vmcs.store.DrinkStoreController;
+import sg.edu.nus.iss.vmcs.store.DrinksStore;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
@@ -28,7 +31,8 @@ public class MainController {
 	private MachineryController   machineryCtrl;
 	private MaintenanceController maintenanceCtrl;
 	private TransactionController txCtrl;
-	private StoreController       storeCtrl;
+	private DrinkStoreController drinkStoreCtrl;
+	private CashStoreController  cashStoreCtrl;
 	private ApplicationMediator mediator;
 
 	private String      propertyFile;
@@ -75,8 +79,10 @@ public class MainController {
 			cashLoader.initialize();
 			drinksLoader.initialize();
 			mediator = new AuthenticationMediatorImpl();
-			storeCtrl = new StoreController(cashLoader, drinksLoader, mediator);
-			storeCtrl.initialize();
+			this.cashStoreCtrl = new CashStoreController(new CashStore(), cashLoader, mediator);
+			this.cashStoreCtrl.initialize();
+			this.drinkStoreCtrl = new DrinkStoreController(new DrinksStore(), drinksLoader, mediator);
+			this.drinkStoreCtrl.initialize();
 			simulatorCtrl = new SimulationController(this, mediator);
 			machineryCtrl = new MachineryController(this, mediator);
 			machineryCtrl.initialize();
@@ -117,8 +123,16 @@ public class MainController {
 	 * This method returns the StoreController.
 	 * @return the StoreController.
 	 */
-	public StoreController getStoreController() {
-		return storeCtrl;
+	public DrinkStoreController getDrinksStoreController() {
+		return this.drinkStoreCtrl;
+	}
+	
+	/**
+	 * This method returns the StoreController.
+	 * @return the StoreController.
+	 */
+	public CashStoreController getCashStoreController() {
+		return this.cashStoreCtrl;
 	}
 
 	/**
@@ -154,7 +168,8 @@ public class MainController {
 	 */
 	public void closeDown() {
 		try {
-			storeCtrl.closeDown();
+			this.cashStoreCtrl.closeDown();
+			this.drinkStoreCtrl.closeDown();
 		} catch (Exception e) {
 			System.out.println("Error closing down the stores: " + e);
 		}

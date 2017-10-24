@@ -53,10 +53,10 @@ public class ChangeGiver {
 		try{
 			int changeBal=changeRequired;
 			MainController mainCtrl=txCtrl.getMainController();
-			StoreController storeCtrl=mainCtrl.getStoreController();
-			int cashStoreSize=storeCtrl.getStoreSize(Store.CASH); 
+			StoreController storeCtrl=mainCtrl.getCashStoreController();
+			int cashStoreSize=storeCtrl.getStoreSize(); 
 			for(int i=cashStoreSize-1;i>=0;i--){
-				StoreItem cashStoreItem=storeCtrl.getStore(Store.CASH).getStoreItem(i);
+				StoreItem cashStoreItem=storeCtrl.getStore().getStoreItem(i);
 				int quantity=cashStoreItem.getQuantity();
 				Coin coin=(Coin)cashStoreItem.getContent();
 				int value=coin.getValue();
@@ -89,8 +89,8 @@ public class ChangeGiver {
 			return;
 		boolean isAnyDenoEmpty=false;
 		MainController mainCtrl=txCtrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
-		StoreItem[] cashStoreItems=storeCtrl.getStore(Store.CASH).getItems();
+		StoreController storeCtrl=mainCtrl.getCashStoreController();
+		StoreItem[] cashStoreItems=storeCtrl.getStore().getItems();
 		for(int i=0;i<cashStoreItems.length;i++){
 			StoreItem storeItem=cashStoreItems[i];
 			CashStoreItem cashStoreItem=(CashStoreItem)storeItem;

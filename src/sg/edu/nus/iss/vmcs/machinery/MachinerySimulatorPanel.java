@@ -34,7 +34,8 @@ public class MachinerySimulatorPanel extends Dialog {
 	private StoreViewer cashDisplay;
 	private StoreViewer drinksDisplay;
 	private Checkbox doorDisplay;
-	private StoreController storeCtrl;
+	public DrinkStoreController drinkStoreCtrl;
+	public CashStoreController cashStoreCtrl;
 	private MachineryController machineryCtrl;
 
 	/**
@@ -46,14 +47,16 @@ public class MachinerySimulatorPanel extends Dialog {
 		super(fr, TITLE, false);
 
 		machineryCtrl = machCtrl;
-		storeCtrl = machineryCtrl.getMainController().getStoreController();
+		
+		cashStoreCtrl = machineryCtrl.getMainController().getCashStoreController();
+		drinkStoreCtrl = machineryCtrl.getMainController().getDrinksStoreController();
 
 		Label lb = new Label(TITLE);
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
 		lb.setAlignment(Label.CENTER);
 
-		cashDisplay = new StoreViewer(Store.CASH, storeCtrl);
-		drinksDisplay = new StoreViewer(Store.DRINK, storeCtrl);
+		cashDisplay = new StoreViewer(Store.CASH, cashStoreCtrl);
+		drinksDisplay = new StoreViewer(Store.DRINK, drinkStoreCtrl);
 
 		Panel tp = new Panel();
 		tp.setLayout(new GridLayout(0, 1));
