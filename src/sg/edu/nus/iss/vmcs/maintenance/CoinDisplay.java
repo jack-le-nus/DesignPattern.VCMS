@@ -7,9 +7,10 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
-import java.awt.*;
-
-import sg.edu.nus.iss.vmcs.store.*;
+import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.system.VMCSPanel;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
@@ -21,7 +22,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class CoinDisplay extends Panel {
+public class CoinDisplay extends VMCSPanel {
 	public final static String TITLE = "Quantity of Coins Available";
 
 	private StoreController storeCtrl;
@@ -42,10 +43,11 @@ public class CoinDisplay extends Panel {
 		StoreItem[] items = storeCtrl.getStoreItems(Store.CASH);
 
 		bi = new ButtonItemDisplay(TITLE, items, len);
+		System.out.println("Length"+len);
 
 		bi.addListener(new CoinDisplayListener(mCtrl));
-
-		bi.clear();
+		
+		//bi.clear();
 
 		this.add(bi);
 
@@ -66,7 +68,7 @@ public class CoinDisplay extends Panel {
 	 */
 	public void displayQty(int idx, int qty) throws VMCSException {
 		curIdx = idx;
-		bi.clear();
+		//bi.clear();
 		bi.displayQty(idx, qty);
 	}
 
@@ -76,5 +78,15 @@ public class CoinDisplay extends Panel {
 	 */
 	public int getCurIdx() {
 		return curIdx;
+	}
+	
+	public void update()
+	{
+		int length = storeCtrl.getStoreItems(Store.CASH).length;
+		for(int i=0; i< length;i++)
+		{
+			mCtrl.displayCoin(i);
+		}
+		
 	}
 }//End of class CoinDisplay

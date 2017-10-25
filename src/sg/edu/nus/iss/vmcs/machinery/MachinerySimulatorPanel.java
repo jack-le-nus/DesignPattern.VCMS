@@ -52,8 +52,8 @@ public class MachinerySimulatorPanel extends Dialog {
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
 		lb.setAlignment(Label.CENTER);
 
-		cashDisplay = new StoreViewer(Store.CASH, storeCtrl);
-		drinksDisplay = new StoreViewer(Store.DRINK, storeCtrl);
+		cashDisplay = new StoreViewer(Store.CASH, machineryCtrl);
+		drinksDisplay = new StoreViewer(Store.DRINK, machineryCtrl);
 
 		Panel tp = new Panel();
 		tp.setLayout(new GridLayout(0, 1));

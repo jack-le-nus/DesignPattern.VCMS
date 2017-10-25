@@ -111,6 +111,8 @@ public class MaintenancePanel extends Dialog {
 
 		cDisplay = new CoinDisplay(mctrl);
 		dDisplay = new DrinkDisplay(mctrl);
+		
+		
 
 		Panel tp5 = new Panel();
 		tp5.setLayout(new GridLayout(0, 1));
@@ -170,6 +172,10 @@ public class MaintenancePanel extends Dialog {
 	 */
 	public void display() {
 		this.setVisible(true);
+		
+		System.out.println("called");
+		cDisplay.update();
+		dDisplay.update();
 	}
 
 	/**
@@ -276,6 +282,7 @@ public class MaintenancePanel extends Dialog {
 	 */
 	public void updateQtyDisplay(int type, int idx, int qty)
 		throws VMCSException {
+		System.out.println("calling function to update");
 		if (type == Store.CASH) {
 			cDisplay.displayQty(idx, qty);
 		} else

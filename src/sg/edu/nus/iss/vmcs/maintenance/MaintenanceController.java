@@ -109,6 +109,7 @@ public class MaintenanceController {
 	 * @param idx the index of the Coin.
 	 */
 	public void displayCoin(int idx) {
+		System.out.println("Testing"+idx);
 		StoreController sctrl = mCtrl.getStoreController();
 		CashStoreItem item;
 		try {
@@ -179,7 +180,7 @@ public class MaintenanceController {
 			machctrl.displayCoinStock();
 			// the cash qty current is displayed in the Maintenance panel needs to be update to be 0;
 			// not required.
-			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
+//			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
 		} catch (VMCSException e) {
 			System.out.println("MaintenanceController.transferAll:" + e);
 		}
@@ -240,10 +241,21 @@ public class MaintenanceController {
 			mCtrl.getTransactionController().refreshCustomerPanel();
 		}
 	}
+	
+	
+
+	public MaintenancePanel getMpanel() {
+		return mpanel;
+	}
+
+	public void setMpanel(MaintenancePanel mpanel) {
+		this.mpanel = mpanel;
+	}
 
 	/**
 	 * This method will close down the maintenance functions of the vending machine&#46
 	 * This method close down the MaintenancePanel.
+	 
 	 */
 	public void closeDown() {
 		if (mpanel != null)

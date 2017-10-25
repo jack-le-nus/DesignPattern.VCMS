@@ -7,10 +7,16 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Panel;
 
-import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.system.VMCSPanel;
+import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
  * This interface object is part of the MaintenancePanel&#46; It is used by the Maintainer to 
@@ -21,7 +27,7 @@ import sg.edu.nus.iss.vmcs.util.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class DrinkDisplay extends Panel {
+public class DrinkDisplay extends VMCSPanel {
 	public final static String TITLE = "Quantity of Drinks Available";
 
 	private StoreController storeCtrl;
@@ -60,6 +66,7 @@ public class DrinkDisplay extends Panel {
 		this.add("Center", tp);
 		this.add("South", price);
 		price.setEnabled(false);
+	
 	}
 
 	/**
@@ -88,7 +95,7 @@ public class DrinkDisplay extends Panel {
 	 */
 	public void displayQty(int idx, int qty) throws VMCSException {
 		curIdx = idx;
-		bi.clear();
+		//bi.clear();
 		price.setEnabled(true);
 		bi.displayQty(idx, qty);
 	}
@@ -99,5 +106,15 @@ public class DrinkDisplay extends Panel {
 	 */
 	public int getCurIdx() {
 		return curIdx;
+	}
+	
+	public void update()
+	{
+		int length = storeCtrl.getStoreItems(Store.DRINK).length;
+		for(int i=0; i< length;i++)
+		{
+			mCtrl.displayDrinks(i);
+		}
+		
 	}
 }//End of class DrinkDisplay

@@ -95,7 +95,7 @@ public class ButtonItemDisplay extends Panel {
 	/**
 	 * This method displays a quantity on to a specific ButtonItem&#46;
 	 * @param idx the index of the specific button item&#46;
-	 * @param qty the quantity of the specific item&#46;
+	 * @param qty the quantity of the specifi	c item&#46;
 	 * @throws VMCSException if idx is greater or equal than total 
 	 * number of button item&#46;
 	 */

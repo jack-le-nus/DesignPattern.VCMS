@@ -7,10 +7,17 @@
  */
 package sg.edu.nus.iss.vmcs.machinery;
 
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
 
-import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.system.MainController;
+import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
  * This boundary object displays the contents of a store (DrinksStore or CashStore) and
@@ -35,9 +42,9 @@ public class StoreViewer extends Panel {
 	 * @param ti the type of the store.
 	 * @param sctrl the StoreController.
 	 */
-	public StoreViewer(int ti, StoreController sctrl) {
+	public StoreViewer(int ti, MachineryController mctrl) {
 		
-		storeCtrl = sctrl;
+		storeCtrl = mctrl.getMainController().getStoreController();
 		type = ti;
 		
 		String title = null;
@@ -66,7 +73,7 @@ public class StoreViewer extends Panel {
 						LabelledDisplay.DEFAULT,
 						LabelledDisplay.GRID);
 			viewItems[i].addListener(
-                        new StoreViewerListener(type, i, storeCtrl));
+                        new StoreViewerListener(type, i, mctrl));
 			this.add(viewItems[i]);
 		}
 		
@@ -82,6 +89,7 @@ public class StoreViewer extends Panel {
 			int val = storeItem[i].getQuantity();
 			String sval = String.valueOf(val);
 			viewItems[i].setValue(sval);
+			
 		}
 	}
 
