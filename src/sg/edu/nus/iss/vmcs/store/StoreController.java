@@ -24,30 +24,25 @@ import java.io.IOException;
  * @see StoreObject
  * 
  * @version 3.0 5/07/2003
- * @author Olivo Miotto, Pang Ping Lix	
+ * @author Olivo Miotto, Pang Ping Li
  */
 public class StoreController {
 	private CashStore cStore;
 	private DrinksStore dStore;
 
-//	private PropertyLoader cashLoader;
-//	private PropertyLoader drinksLoader;
-	
-	private CashProperty cashProperty;
-	private DrinkProperty drinkProperty;
+	private PropertyLoader cashLoader;
+	private PropertyLoader drinksLoader;
 
 	/**
 	 * This constructor creates an instance of StoreController object.
 	 * @param cashLoader the cash loader.
 	 * @param drinksLoader the drinks loader.
 	 */
-	public StoreController( 
+	public StoreController(
 		PropertyLoader cashLoader,
 		PropertyLoader drinksLoader) {
-		cashProperty = new CashProperty(cashLoader);
-		drinkProperty = new DrinkProperty(drinksLoader);
-//		this.cashLoader = cashLoader;
-//		this.drinksLoader = drinksLoader;
+		this.cashLoader = cashLoader;
+		this.drinksLoader = drinksLoader;
 	}
 
 	/**
@@ -57,7 +52,11 @@ public class StoreController {
 	public void initialize() throws IOException {
 		cStore = new CashStore();
 		dStore = new DrinksStore();
-		initializeStores();
+		
+		StoreManager storeManager = new CashStoreManager(cStore, cashLoader);
+		storeManager.initializeStore();
+		storeManager = new DrinktStoreManager(dStore, drinksLoader);
+	    storeManager.initializeStore();
 	}
 
 	/**
@@ -69,6 +68,8 @@ public class StoreController {
 		initializeCashStore();
 		initializeDrinkStore();
 	}
+	
+	
 
 	/**
 	 * This method initialize the {@link DrinksStore}.
@@ -77,11 +78,11 @@ public class StoreController {
 	private void initializeDrinkStore() throws IOException {
 
 		// get the drink file from the environment property file;
-		int numOfItems = drinkProperty.getNumOfItems();
+		int numOfItems = drinksLoader.getNumOfItems();
 		dStore.setStoreSize(numOfItems);
 
 		for (int i = 0; i < numOfItems; i++) {
-            DrinksStoreItem item = (DrinksStoreItem) drinkProperty.getItem(i);
+            DrinksStoreItem item = (DrinksStoreItem) drinksLoader.getItem(i);
 			StoreObject brand = item.getContent();
 			StoreObject existingBrand = dStore.findObject(brand.getName());
 			if (existingBrand != null) {
@@ -98,11 +99,11 @@ public class StoreController {
 	private void initializeCashStore() throws IOException {
 
 		// get the cash file from the environment property file;
-		int numOfItems = cashProperty.getNumOfItems();
+		int numOfItems = cashLoader.getNumOfItems();
 		cStore.setStoreSize(numOfItems);
 
 		for (int i = 0; i < numOfItems; i++) {
-		    CashStoreItem item = (CashStoreItem) cashProperty.getItem(i);
+		    CashStoreItem item = (CashStoreItem) cashLoader.getItem(i);
 			cStore.addItem(i, item);
 		}
 	}
@@ -254,11 +255,11 @@ public class StoreController {
 	 */
 	private void saveCashProperties() throws IOException {
 		int size = cStore.getStoreSize();
-		cashProperty.setNumOfItems(size);
+		cashLoader.setNumOfItems(size);
 		for (int i = 0; i < size; i++) {
-			cashProperty.setItem(i, cStore.getStoreItem(i));
+			cashLoader.setItem(i, cStore.getStoreItem(i));
 		}
-		cashProperty.saveProperty();
+		cashLoader.saveProperty();
 	}
 
 	/**
@@ -268,11 +269,11 @@ public class StoreController {
 	 */
 	private void saveDrinksProperties() throws IOException {
 		int size = dStore.getStoreSize();
-		drinkProperty.setNumOfItems(size);
+		drinksLoader.setNumOfItems(size);
 		for (int i = 0; i < size; i++) {
-			drinkProperty.setItem(i, dStore.getStoreItem(i));
+			drinksLoader.setItem(i, dStore.getStoreItem(i));
 		}
-		drinkProperty.saveProperty();
+		drinksLoader.saveProperty();
 	}
 
 	/**
