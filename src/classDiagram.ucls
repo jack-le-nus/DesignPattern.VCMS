@@ -1,270 +1,186 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="sg.edu.nus.iss.vmcs.maintenance.MaintenanceController" 
-    project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/maintenance/MaintenanceController.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="187" y="122"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="2" language="java" name="sg.edu.nus.iss.vmcs.customer.TransactionController" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/customer/TransactionController.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="190" y="221"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="3" language="java" name="sg.edu.nus.iss.vmcs.machinery.MachineryController" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/machinery/MachineryController.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="175" y="329"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="sg.edu.nus.iss.vmcs.maintenance.AccessManager" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/maintenance/AccessManager.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="287" y="12"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="sg.edu.nus.iss.vmcs.system.SimulationController" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/system/SimulationController.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="179" y="441"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="sg.edu.nus.iss.vmcs.util.LabelledDisplay" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/util/LabelledDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1040" y="366"/>    
+  <class id="1" language="java" name="sg.edu.nus.iss.vmcs.ItemDisplay" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/ItemDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="304" y="238"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="sg.edu.nus.iss.vmcs.util.WarningDisplay" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/util/WarningDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="55" width="132" x="712" y="63"/>    
+  <interface id="2" language="java" name="sg.edu.nus.iss.vmcs.Builder" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/Builder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="83" y="233"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
-  </class>  
-  <class id="8" language="java" name="sg.edu.nus.iss.vmcs.util.MessageDialog" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/util/MessageDialog.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="55" width="129" x="884" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="sg.edu.nus.iss.vmcs.util.LabelledValue" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/util/LabelledValue.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="55" width="121" x="1053" y="63"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <class id="10" language="java" name="sg.edu.nus.iss.vmcs.maintenance.ButtonItemDisplay" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/maintenance/ButtonItemDisplay.java" binary="false" 
+  </interface>  
+  <class id="3" language="java" name="sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/ButtonItemDisplayBuilder.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="838" y="367"/>    
+    <position height="-1" width="-1" x="76" y="432"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="sg.edu.nus.iss.vmcs.maintenance.CoinDisplay" project="DesignPattern.VCMS" 
+  <class id="4" language="java" name="sg.edu.nus.iss.vmcs.Director" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/Director.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="109" y="61"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="sg.edu.nus.iss.vmcs.StoreViewerBuilder" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/StoreViewerBuilder.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="285" y="420"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="sg.edu.nus.iss.vmcs.maintenance.ButtonItem" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/maintenance/ButtonItem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="736" y="113"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
+      <operations public="false" package="false" protected="false" private="false" static="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="sg.edu.nus.iss.vmcs.maintenance.CoinDisplay" project="DesignPattern.VCMS" 
     file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/maintenance/CoinDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="714" y="206"/>    
+    <position height="-1" width="-1" x="807" y="304"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="sg.edu.nus.iss.vmcs.maintenance.DrinkDisplay" project="DesignPattern.VCMS" 
+  <class id="8" language="java" name="sg.edu.nus.iss.vmcs.maintenance.DrinkDisplay" project="DesignPattern.VCMS" 
     file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/maintenance/DrinkDisplay.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="944" y="172"/>    
+    <position height="-1" width="-1" x="660" y="468"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="sg.edu.nus.iss.vmcs.customer.CoinInputBox" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/customer/CoinInputBox.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="55" width="148" x="509" y="346"/>    
+  <class id="9" language="java" name="sg.edu.nus.iss.vmcs.util.LabelledDisplay" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/util/LabelledDisplay.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="780" y="191"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="sg.edu.nus.iss.vmcs.customer.CoinButton" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/customer/CoinButton.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="669" y="499"/>    
+  <interface id="10" language="java" name="sg.edu.nus.iss.vmcs.ItemDisplayElement" project="DesignPattern.VCMS" 
+    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/ItemDisplayElement.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="55" width="159" x="293" y="11"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="false"/>      
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
-  </class>  
-  <class id="15" language="java" name="sg.edu.nus.iss.vmcs.customer.DrinkSelectionBox" project="DesignPattern.VCMS" 
-    file="/DesignPattern.VCMS/src/sg/edu/nus/iss/vmcs/customer/DrinkSelectionBox.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="450" y="482"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="false" package="false" protected="false" private="false" static="false"/>      
-      <operations public="false" package="false" protected="false" private="false" static="false"/>    
-    </display>  
-  </class>  
-  <association id="16">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="17" name="txCtrl">        
+  </interface>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="14">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="15" name="storeViewerDisplay">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
+      <multiplicity id="16" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="20" name="txCtrl">        
+  <realization id="17">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="18">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="19" name="buttonItemDisplay">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1">        
+      <multiplicity id="20" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="21">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <association id="22">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="23" name="btnCoinButton">        
-        <position height="0" width="0" x="-136" y="136"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-136" y="136"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="23" name="price"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="25">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="26" name="mCtrl">        
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="26" name="m_builder">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="28">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="29" name="mCtrl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="29" name="bi"/>      
+      <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="32" name="mctrl">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
+  <generalization id="31">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="32">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="33" name="bi"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="34">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="35" name="price">        
-        <position height="0" width="0" x="435" y="276"/>      
-      </attribute>      
-      <multiplicity id="36" minimum="0" maximum="1">        
-        <position height="0" width="0" x="435" y="276"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="37">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="38" name="bi">        
-        <position height="0" width="0" x="92" y="81"/>      
-      </attribute>      
-      <multiplicity id="39" minimum="0" maximum="1">        
-        <position height="0" width="0" x="92" y="81"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="40">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="41" name="bi">        
-        <position height="0" width="0" x="92" y="81"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="0" width="0" x="92" y="81"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="43">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="44" name="am">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="45" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <realization id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="false" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="false" package="false" protected="false" private="false" static="false"/>    

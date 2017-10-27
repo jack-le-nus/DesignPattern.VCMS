@@ -118,7 +118,7 @@ public class MaintenanceController extends BaseController {
 		CashStoreItem item;
 		try {
 			item = (CashStoreItem) sctrl.getStoreItem(idx);
-			mpanel.getCoinDisplay().displayQty(idx, item.getQuantity());
+			mpanel.getCoinDisplay().update(idx, item.getQuantity());
 		} catch (VMCSException e) {
 			System.out.println("MaintenanceController.displayCoin:" + e);
 		}
@@ -137,7 +137,7 @@ public class MaintenanceController extends BaseController {
 		try {
 			item = (DrinksStoreItem) sctrl.getStoreItem(idx);
 			DrinksBrand db = (DrinksBrand) item.getContent();
-			mpanel.getDrinksDisplay().displayQty(idx, item.getQuantity());
+			mpanel.getDrinksDisplay().update(idx, item.getQuantity());
 			mpanel.displayPrice(db.getPrice());
 		} catch (VMCSException e) {
 			System.out.println("MaintenanceController.displayDrink:" + e);

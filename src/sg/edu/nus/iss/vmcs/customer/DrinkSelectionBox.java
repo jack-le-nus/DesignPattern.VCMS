@@ -25,7 +25,7 @@ import sg.edu.nus.iss.vmcs.system.MainController;
  * @author Team SE16T5E
  * @version 1.0 2008-10-01
  */
-public class DrinkSelectionBox extends Panel{
+public class DrinkSelectionBox extends Panel {
 	private DrinkSelectionItem drinkSelectionItems[];
 	private TransactionController txCtrl;
 	

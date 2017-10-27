@@ -8,7 +8,13 @@
 package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
+import sg.edu.nus.iss.vmcs.Builder;
+import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
+import sg.edu.nus.iss.vmcs.Director;
+import sg.edu.nus.iss.vmcs.ItemDisplay;
+import sg.edu.nus.iss.vmcs.ItemDisplayElement;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -21,13 +27,13 @@ import sg.edu.nus.iss.vmcs.util.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class DrinkDisplay extends Panel {
+public class DrinkDisplay extends ItemDisplay { 
 	public final static String TITLE = "Quantity of Drinks Available";
 
 	private DrinkStoreController storeCtrl;
 	private MaintenanceController mCtrl;
-	private ButtonItemDisplay bi;
-	private LabelledDisplay price;
+	private ItemDisplay bi;
+	private ItemDisplay price;
 	private int curIdx; //current displayed item index;
 
 	/**
@@ -43,7 +49,10 @@ public class DrinkDisplay extends Panel {
 		len = storeCtrl.getStoreSize();
 		StoreItem[] items = storeCtrl.getStoreItems();
 
-		bi = new ButtonItemDisplay(TITLE, items, len);
+		Builder builder = new ButtonItemDisplayBuilder();
+		Director director = new Director(builder);
+		director.construct(TITLE, items, len);
+		bi = builder.getResult();
 
 		bi.addListener(new DrinkDisplayListener(mCtrl));
 		bi.clear();
@@ -58,15 +67,15 @@ public class DrinkDisplay extends Panel {
 		tp.add(bi);
 		curIdx = 0;
 		this.add("Center", tp);
-		this.add("South", price);
-		price.setEnabled(false);
+		this.add("South", (Panel)price);
+		price.setActive(false);
 	}
 
 	/**
 	 * This method returns the LabelledDisplay of the price.
 	 * @return LabelledDisplay of the price.
 	 */
-	public LabelledDisplay getPriceDisplay() {
+	public ItemDisplayElement getPriceDisplay() {
 		return price;
 	}
 
@@ -86,11 +95,11 @@ public class DrinkDisplay extends Panel {
 	 * @param qty the quantity of the stock.
 	 * @throws VMCSException if fail to display quantity.
 	 */
-	public void displayQty(int idx, int qty) throws VMCSException {
+	public void update(int idx, int qty) throws VMCSException {
 		curIdx = idx;
 		bi.clear();
-		price.setEnabled(true);
-		bi.displayQty(idx, qty);
+		price.setActive(true);
+		bi.update(idx, qty);
 	}
 
 	/**
@@ -99,5 +108,40 @@ public class DrinkDisplay extends Panel {
 	 */
 	public int getCurIdx() {
 		return curIdx;
+	}
+
+	public void addListener(ActionListener l) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setActionCommand(String valueOf) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setValue(String value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setItems(ItemDisplayElement[] items) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setStoreItems(StoreItem[] items) {
+		// TODO Auto-generated method stub
+		
 	}
 }//End of class DrinkDisplay

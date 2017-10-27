@@ -8,7 +8,13 @@
 package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 
+import sg.edu.nus.iss.vmcs.Builder;
+import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
+import sg.edu.nus.iss.vmcs.Director;
+import sg.edu.nus.iss.vmcs.ItemDisplay;
+import sg.edu.nus.iss.vmcs.ItemDisplayElement;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -21,12 +27,12 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class CoinDisplay extends Panel {
+public class CoinDisplay extends ItemDisplay {
 	public final static String TITLE = "Quantity of Coins Available";
 
 	private CashStoreController storeCtrl;
 	private MaintenanceController mCtrl;
-	private ButtonItemDisplay bi;
+	private ItemDisplay bi;
 	private int len;
 	private int curIdx;
 
@@ -41,7 +47,10 @@ public class CoinDisplay extends Panel {
 		len = storeCtrl.getStoreSize();
 		StoreItem[] items = storeCtrl.getStoreItems();
 
-		bi = new ButtonItemDisplay(TITLE, items, len);
+		Builder builder = new ButtonItemDisplayBuilder();
+		Director director = new Director(builder);
+		director.construct(TITLE, items, len);
+		bi = builder.getResult();
 
 		bi.addListener(new CoinDisplayListener(mCtrl));
 
@@ -64,10 +73,10 @@ public class CoinDisplay extends Panel {
 	 * Display the quantity of selected coin, clear other display.
 	 * @throws VMCSException if fail to display quantity.
 	 */
-	public void displayQty(int idx, int qty) throws VMCSException {
+	public void update(int idx, int qty) throws VMCSException {
 		curIdx = idx;
 		bi.clear();
-		bi.displayQty(idx, qty);
+		bi.update(idx, qty);
 	}
 
 	/**
@@ -76,5 +85,40 @@ public class CoinDisplay extends Panel {
 	 */
 	public int getCurIdx() {
 		return curIdx;
+	}
+
+	public void addListener(ActionListener l) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setActionCommand(String valueOf) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setValue(String value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setItems(ItemDisplayElement[] items) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setStoreItems(StoreItem[] items) {
+		// TODO Auto-generated method stub
+		
 	}
 }//End of class CoinDisplay

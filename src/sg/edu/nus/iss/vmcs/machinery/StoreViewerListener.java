@@ -21,7 +21,6 @@ import sg.edu.nus.iss.vmcs.store.StoreController;
 
 
 public class StoreViewerListener implements ActionListener {
-	private int type;
 	private int item;
 	private StoreController storeCtrl;
 
@@ -31,8 +30,7 @@ public class StoreViewerListener implements ActionListener {
 	 * @param item the store item.
 	 * @param sctrl the StoreController.
 	 */
-	public StoreViewerListener(int type, int item, StoreController sctrl) {
-		this.type = type;
+	public StoreViewerListener(int item, StoreController sctrl) {
 		this.item = item;
 		storeCtrl = sctrl;
 	}

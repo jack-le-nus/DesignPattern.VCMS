@@ -10,6 +10,11 @@ package sg.edu.nus.iss.vmcs.machinery;
 import java.awt.*;
 import java.awt.event.*;
 
+import sg.edu.nus.iss.vmcs.Builder;
+import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
+import sg.edu.nus.iss.vmcs.Director;
+import sg.edu.nus.iss.vmcs.ItemDisplay;
+import sg.edu.nus.iss.vmcs.StoreViewerBuilder;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 
@@ -31,12 +36,17 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 public class MachinerySimulatorPanel extends Dialog {
 	private static final String TITLE = "Machinery Panel";
 
-	private StoreViewer cashDisplay;
-	private StoreViewer drinksDisplay;
+	private ItemDisplay cashDisplay;
+	private ItemDisplay drinksDisplay;
 	private Checkbox doorDisplay;
 	public DrinkStoreController drinkStoreCtrl;
 	public CashStoreController cashStoreCtrl;
 	private MachineryController machineryCtrl;
+	
+	/**This constant attribute holds the cash view title*/
+	public static final String CASH_VIEW_TITLE = "Quantity of Coins Available";
+	/**This constant attribute holds the drink view title*/
+	public static final String DRINK_VIEW_TITLE = "Quantity of Drinks Available";
 
 	/**
 	 * This constructor creates an instance of MachinerySimulatorPanel.
@@ -54,9 +64,16 @@ public class MachinerySimulatorPanel extends Dialog {
 		Label lb = new Label(TITLE);
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
 		lb.setAlignment(Label.CENTER);
-
-		cashDisplay = new StoreViewer(Store.CASH, cashStoreCtrl);
-		drinksDisplay = new StoreViewer(Store.DRINK, drinkStoreCtrl);
+		
+		Builder builder = new StoreViewerBuilder(cashStoreCtrl);
+		Director director = new Director(builder);
+		director.construct(CASH_VIEW_TITLE, cashStoreCtrl.getStoreItems(), cashStoreCtrl.getStoreSize());
+		cashDisplay = builder.getResult();
+		
+		builder = new StoreViewerBuilder(drinkStoreCtrl);
+		director = new Director(builder);
+		director.construct(DRINK_VIEW_TITLE, drinkStoreCtrl.getStoreItems(), drinkStoreCtrl.getStoreSize());
+		drinksDisplay = builder.getResult();
 
 		Panel tp = new Panel();
 		tp.setLayout(new GridLayout(0, 1));
@@ -108,7 +125,7 @@ public class MachinerySimulatorPanel extends Dialog {
 	 * This method returns the CashDisplay:StoreViewer.
 	 * @return the CashDisplay:StoreViewer.
 	 */
-	public StoreViewer getCashStoreDisplay() {
+	public ItemDisplay getCashStoreDisplay() {
 		return cashDisplay;
 	}
 
@@ -116,7 +133,7 @@ public class MachinerySimulatorPanel extends Dialog {
 	 * This method returns the DrinksDisplay:StoreViewer.
 	 * @return the DrinksDisplay:StoreViewer.
 	 */
-	public StoreViewer getDrinksStoreDisplay() {
+	public ItemDisplay getDrinksStoreDisplay() {
 		return drinksDisplay;
 	}
 
