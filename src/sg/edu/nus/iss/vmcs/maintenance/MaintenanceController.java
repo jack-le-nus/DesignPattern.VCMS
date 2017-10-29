@@ -11,10 +11,11 @@ import java.awt.Frame;
 
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
+import sg.edu.nus.iss.vmcs.store.CashStoreController;
 import sg.edu.nus.iss.vmcs.store.CashStoreItem;
 import sg.edu.nus.iss.vmcs.store.DrinksBrand;
+import sg.edu.nus.iss.vmcs.store.DrinksStoreController;
 import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
-import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
@@ -109,10 +110,11 @@ public class MaintenanceController {
 	 * @param idx the index of the Coin.
 	 */
 	public void displayCoin(int idx) {
-		StoreController sctrl = mCtrl.getStoreController();
+		System.out.println("Testing"+idx);
+		StoreController sctrl = mCtrl.getCashStoreController();
 		CashStoreItem item;
 		try {
-			item = (CashStoreItem) sctrl.getStoreItem(Store.CASH, idx);
+			item = (CashStoreItem) sctrl.getStoreItem(idx);
 			mpanel.getCoinDisplay().displayQty(idx, item.getQuantity());
 		} catch (VMCSException e) {
 			System.out.println("MaintenanceController.displayCoin:" + e);
@@ -127,10 +129,10 @@ public class MaintenanceController {
 	 * @param idx the index of the drinks.
 	 */
 	public void displayDrinks(int idx) {
-		StoreController sctrl = mCtrl.getStoreController();
+		StoreController sctrl = mCtrl.getDrinksStoreController();
 		DrinksStoreItem item;
 		try {
-			item = (DrinksStoreItem) sctrl.getStoreItem(Store.DRINK, idx);
+			item = (DrinksStoreItem) sctrl.getStoreItem(idx);
 			DrinksBrand db = (DrinksBrand) item.getContent();
 			mpanel.getDrinksDisplay().displayQty(idx, item.getQuantity());
 			mpanel.displayPrice(db.getPrice());
@@ -145,9 +147,10 @@ public class MaintenanceController {
 	 * @param pr the price of the drinks.
 	 */
 	public void setPrice(int pr) {
-		StoreController sctrl = mCtrl.getStoreController();
+		DrinksStoreController sctrl = mCtrl.getDrinksStoreController();
 		int curIdx = mpanel.getCurIdx();
-		sctrl.setPrice(curIdx, pr);
+		
+  		sctrl.setPrice(curIdx, pr);
 		mpanel.getDrinksDisplay().getPriceDisplay().setValue(pr + "C");
 	}
 
@@ -156,7 +159,7 @@ public class MaintenanceController {
 	 * This method is invoked by the TotalCashButtonListener.
 	 */
 	public void getTotalCash() {
-		StoreController sctrl = mCtrl.getStoreController();
+		CashStoreController sctrl = mCtrl.getCashStoreController();
 		int tc = sctrl.getTotalCash();
 		mpanel.displayTotalCash(tc);
 
@@ -168,7 +171,7 @@ public class MaintenanceController {
 	 * It get all the cash from store and set store cash 0.
 	 */
 	public void transferAll() {
-		StoreController sctrl = mCtrl.getStoreController();
+		CashStoreController sctrl = mCtrl.getCashStoreController();
 		MachineryController machctrl = mCtrl.getMachineryController();
 
 		int cc; // coin quantity;
@@ -179,7 +182,7 @@ public class MaintenanceController {
 			machctrl.displayCoinStock();
 			// the cash qty current is displayed in the Maintenance panel needs to be update to be 0;
 			// not required.
-			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
+//			mpanel.updateCurrentQtyDisplay(Store.CASH, 0);
 		} catch (VMCSException e) {
 			System.out.println("MaintenanceController.transferAll:" + e);
 		}
@@ -240,10 +243,21 @@ public class MaintenanceController {
 			mCtrl.getTransactionController().refreshCustomerPanel();
 		}
 	}
+	
+	
+
+	public MaintenancePanel getMpanel() {
+		return mpanel;
+	}
+
+	public void setMpanel(MaintenancePanel mpanel) {
+		this.mpanel = mpanel;
+	}
 
 	/**
 	 * This method will close down the maintenance functions of the vending machine&#46
 	 * This method close down the MaintenancePanel.
+	 
 	 */
 	public void closeDown() {
 		if (mpanel != null)

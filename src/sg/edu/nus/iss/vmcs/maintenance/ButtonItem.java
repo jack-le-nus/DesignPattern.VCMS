@@ -90,6 +90,11 @@ public class ButtonItem extends Panel {
 		setTextBackground(DT_COLOR);
 		value.setText("");
 	}
+	
+	public void tempBackground(Color c)
+	{
+		value.setBackground(c);
+	}
 
 	/**
 	 * This method set the value of the label of the ButtonItem.

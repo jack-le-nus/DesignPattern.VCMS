@@ -38,9 +38,9 @@ public class DrinkSelectionBox extends Panel{
 	public DrinkSelectionBox(TransactionController txCtrl){
 		this.txCtrl=txCtrl;
 		MainController mainCtrl=txCtrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
-		int drinkStoreSize=storeCtrl.getStoreSize(Store.DRINK);
-		StoreItem[] drinkStoreItems=storeCtrl.getStore(Store.DRINK).getItems();
+		StoreController storeCtrl=mainCtrl.getDrinksStoreController();
+		int drinkStoreSize=storeCtrl.getStoreSize();
+		StoreItem[] drinkStoreItems=storeCtrl.getStore().getItems();
 		
 		drinkSelectionItems=new DrinkSelectionItem[drinkStoreSize];
 		
@@ -86,10 +86,10 @@ public class DrinkSelectionBox extends Panel{
 		if(drinkSelectionItems==null||drinkSelectionItems.length==0)
 			return;
 		MainController mainCtrl=txCtrl.getMainController();
-		StoreController storeCtrl=mainCtrl.getStoreController();
+		StoreController storeCtrl=mainCtrl.getDrinksStoreController();
 		for(int i=0;i<drinkSelectionItems.length;i++){
 			DrinkSelectionItem item=drinkSelectionItems[i];
-			StoreItem storeItem=storeCtrl.getStoreItem(Store.DRINK, i);
+			StoreItem storeItem=storeCtrl.getStoreItem(i);
 			int quantity=storeItem.getQuantity();
 			item.setState(active);
 		}

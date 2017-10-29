@@ -7,10 +7,16 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Panel;
 
-import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.system.Dispatcher;
+import sg.edu.nus.iss.vmcs.system.DisplayPanel;
+import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
  * This interface object is part of the MaintenancePanel&#46; It is used by the Maintainer to 
@@ -21,7 +27,7 @@ import sg.edu.nus.iss.vmcs.util.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class DrinkDisplay extends Panel {
+public class DrinkDisplay extends DisplayPanel {
 	public final static String TITLE = "Quantity of Drinks Available";
 
 	private StoreController storeCtrl;
@@ -29,6 +35,7 @@ public class DrinkDisplay extends Panel {
 	private ButtonItemDisplay bi;
 	private LabelledDisplay price;
 	private int curIdx; //current displayed item index;
+	private Dispatcher dispatcher;
 
 	/**
 	 * This constructor creates an instance of the DrinkDisplay object.
@@ -36,15 +43,15 @@ public class DrinkDisplay extends Panel {
 	 */
 	public DrinkDisplay(MaintenanceController mctrl) {
 		mCtrl = mctrl;
-		storeCtrl = mCtrl.getMainController().getStoreController();
+		storeCtrl = mCtrl.getMainController().getDrinksStoreController();
 
 		this.setLayout(new BorderLayout());
 		int len;
-		len = storeCtrl.getStoreSize(Store.DRINK);
-		StoreItem[] items = storeCtrl.getStoreItems(Store.DRINK);
-
+		len = storeCtrl.getStoreSize();
+		StoreItem[] items = storeCtrl.getStoreItems();
+        dispatcher = mctrl.getMainController().getDispatcher();
 		bi = new ButtonItemDisplay(TITLE, items, len);
-
+		bi.setDispatcher(dispatcher);
 		bi.addListener(new DrinkDisplayListener(mCtrl));
 		bi.clear();
 		price = new LabelledDisplay("Brand Price", 4, LabelledDisplay.FLOW);
@@ -60,6 +67,7 @@ public class DrinkDisplay extends Panel {
 		this.add("Center", tp);
 		this.add("South", price);
 		price.setEnabled(false);
+	
 	}
 
 	/**
@@ -88,7 +96,7 @@ public class DrinkDisplay extends Panel {
 	 */
 	public void displayQty(int idx, int qty) throws VMCSException {
 		curIdx = idx;
-		bi.clear();
+		//bi.clear();
 		price.setEnabled(true);
 		bi.displayQty(idx, qty);
 	}
@@ -100,4 +108,25 @@ public class DrinkDisplay extends Panel {
 	public int getCurIdx() {
 		return curIdx;
 	}
+	
+	public void update()
+	{
+		int length = storeCtrl.getStoreItems().length;
+		for(int i=0; i< length;i++)
+		{
+			mCtrl.displayDrinks(i);
+		}
+		
+	}
+
+	public Dispatcher getDispatcher() {
+		return dispatcher;
+	}
+
+	public void setDispatcher(Dispatcher dispatcher) {
+		this.dispatcher = dispatcher;
+	}
+	
+	
+	
 }//End of class DrinkDisplay

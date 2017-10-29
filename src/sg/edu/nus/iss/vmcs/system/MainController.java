@@ -12,6 +12,11 @@ import java.io.IOException;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
+import sg.edu.nus.iss.vmcs.store.CashStore;
+import sg.edu.nus.iss.vmcs.store.CashStoreController;
+import sg.edu.nus.iss.vmcs.store.DrinksStore;
+import sg.edu.nus.iss.vmcs.store.DrinksStoreController;
+import sg.edu.nus.iss.vmcs.store.Store;
 import sg.edu.nus.iss.vmcs.store.StoreController;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -27,6 +32,13 @@ public class MainController {
 	private MaintenanceController maintenanceCtrl;
 	private TransactionController txCtrl;
 	private StoreController       storeCtrl;
+	
+	private CashStoreController cashStoreCtrl;
+	private DrinksStoreController drinksStoreCtrl;
+	
+	
+	private Dispatcher dispatcher;
+	
 
 	private String      propertyFile;
 
@@ -67,8 +79,21 @@ public class MainController {
 				new DrinkPropertyLoader(Environment.getDrinkPropFile());
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			storeCtrl = new StoreController(cashLoader, drinksLoader);
-			storeCtrl.initialize();
+			
+			dispatcher = new Dispatcher();
+			
+			//storeCtrl = new StoreController(cashLoader, drinksLoader);
+			
+			cashStoreCtrl = new CashStoreController(cashLoader,new CashStore());
+			drinksStoreCtrl = new DrinksStoreController(drinksLoader, new DrinksStore());
+			
+			cashStoreCtrl.initialize();
+			drinksStoreCtrl.initialize();
+			
+			cashStoreCtrl.setDispatcher(dispatcher);
+			drinksStoreCtrl.setDispatcher(dispatcher);
+			
+			//storeCtrl.initialize();
 			simulatorCtrl = new SimulationController(this);
 			machineryCtrl = new MachineryController(this);
 			machineryCtrl.initialize();
@@ -104,6 +129,22 @@ public class MainController {
 	public StoreController getStoreController() {
 		return storeCtrl;
 	}
+	
+	/**
+	 * This method returns the StoreController.
+	 * @return the StoreController.
+	 */
+	public CashStoreController getCashStoreController() {
+		return cashStoreCtrl;
+	}
+	
+	/**
+	 * This method returns the StoreController.
+	 * @return the StoreController.
+	 */
+	public DrinksStoreController getDrinksStoreController() {
+		return drinksStoreCtrl;
+	}
 
 	/**
 	 * This method returns the MachineryController&#46; 
@@ -128,6 +169,17 @@ public class MainController {
 	public TransactionController getTransactionController() {
 		return txCtrl;
 	}
+	
+	
+	
+
+	public Dispatcher getDispatcher() {
+		return dispatcher;
+	}
+
+	public void setDispatcher(Dispatcher dispatcher) {
+		this.dispatcher = dispatcher;
+	}
 
 	/**
 	 * This method destroys all the object instances created for opening the vending
@@ -138,7 +190,8 @@ public class MainController {
 	 */
 	public void closeDown() {
 		try {
-			storeCtrl.closeDown();
+			cashStoreCtrl.closeDown();
+			drinksStoreCtrl.closeDown();
 		} catch (Exception e) {
 			System.out.println("Error closing down the stores: " + e);
 		}

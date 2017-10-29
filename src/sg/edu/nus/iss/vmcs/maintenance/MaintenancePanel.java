@@ -20,6 +20,7 @@ import java.awt.Panel;
 import java.awt.Toolkit;
 
 import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.system.Dispatcher;
 import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 import sg.edu.nus.iss.vmcs.util.WarningDisplay;
@@ -72,6 +73,8 @@ public class MaintenancePanel extends Dialog {
 	private WarningDisplay validPswd;
 	private WarningDisplay invalidPswd;
 	private MaintenanceController mctrl;
+	
+    private Dispatcher dispatcher;
 
 	/**
 	 * This constructor creates an instance of MaintenancePanel object.
@@ -108,9 +111,16 @@ public class MaintenancePanel extends Dialog {
 		// center part
 		Panel tpc = new Panel();
 		tpc.setLayout(new GridLayout(0, 1));
+		
+		dispatcher = mctrl.getMainController().getDispatcher();
 
 		cDisplay = new CoinDisplay(mctrl);
 		dDisplay = new DrinkDisplay(mctrl);
+		
+		cDisplay.setDispatcher(dispatcher);
+		dDisplay.setDispatcher(dispatcher);
+		
+		
 
 		Panel tp5 = new Panel();
 		tp5.setLayout(new GridLayout(0, 1));
@@ -170,6 +180,10 @@ public class MaintenancePanel extends Dialog {
 	 */
 	public void display() {
 		this.setVisible(true);
+		
+		System.out.println("called");
+		cDisplay.update();
+		dDisplay.update();
 	}
 
 	/**
@@ -276,6 +290,7 @@ public class MaintenancePanel extends Dialog {
 	 */
 	public void updateQtyDisplay(int type, int idx, int qty)
 		throws VMCSException {
+		System.out.println("calling function to update");
 		if (type == Store.CASH) {
 			cDisplay.displayQty(idx, qty);
 		} else
@@ -312,7 +327,7 @@ public class MaintenancePanel extends Dialog {
 	}
 
 	/**
-	 * This method clear the password field.
+	 ** This method clear the password field.
 	 */
 	public void clearPassword() {
 		password.setValue("");

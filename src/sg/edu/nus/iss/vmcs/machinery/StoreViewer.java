@@ -7,10 +7,20 @@
  */
 package sg.edu.nus.iss.vmcs.machinery;
 
-import java.awt.*;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
 
-import sg.edu.nus.iss.vmcs.store.*;
-import sg.edu.nus.iss.vmcs.util.*;
+import sg.edu.nus.iss.vmcs.store.Store;
+import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.system.Command;
+import sg.edu.nus.iss.vmcs.system.Dispatcher;
+import sg.edu.nus.iss.vmcs.system.MainController;
+import sg.edu.nus.iss.vmcs.system.UpdateStoreItemCommand;
+import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
+import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
  * This boundary object displays the contents of a store (DrinksStore or CashStore) and
@@ -19,9 +29,10 @@ import sg.edu.nus.iss.vmcs.util.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class StoreViewer extends Panel {
+public abstract class StoreViewer extends Panel {
 	private LabelledDisplay viewItems[];
 	private StoreController storeCtrl;
+	Command command;
 	
 	private int type;
 	
@@ -35,9 +46,14 @@ public class StoreViewer extends Panel {
 	 * @param ti the type of the store.
 	 * @param sctrl the StoreController.
 	 */
-	public StoreViewer(int ti, StoreController sctrl) {
+	public StoreViewer(StoreController storeCtrl) {
+		this.storeCtrl = storeCtrl;
 		
-		storeCtrl = sctrl;
+	}
+	
+	/*public StoreViewer(int ti, MachineryController mctrl) {
+		
+		storeCtrl = mctrl.getMainController().getStoreController();
 		type = ti;
 		
 		String title = null;
@@ -66,24 +82,18 @@ public class StoreViewer extends Panel {
 						LabelledDisplay.DEFAULT,
 						LabelledDisplay.GRID);
 			viewItems[i].addListener(
-                        new StoreViewerListener(type, i, storeCtrl));
+                        new StoreViewerListener(type, i, mctrl));
 			this.add(viewItems[i]);
 		}
 		
 		update();
-	}
+	}*/
 
 	/**
 	 * Update the display fields with the data provided.
 	 */
-	public void update () {
-		StoreItem[] storeItem = storeCtrl.getStoreItems(type);
-		for (int i = 0; i < storeItem.length; i++) {
-			int val = storeItem[i].getQuantity();
-			String sval = String.valueOf(val);
-			viewItems[i].setValue(sval);
-		}
-	}
+	public abstract void update();
+	
 
 	/**
 	 * Update the display fields with data provided.
@@ -92,7 +102,7 @@ public class StoreViewer extends Panel {
 	 * @throws VMCSException if fail index is greater or equal to store size.
 	 */
 	public void update(int idx, int qty) throws VMCSException {
-		int sSize = storeCtrl.getStoreSize(type);
+		int sSize = storeCtrl.getStoreSize();
 		if (idx >= sSize)
 			throw new VMCSException("StoreViewer.update", "index overflow");
 		viewItems[idx].setValue(qty);
@@ -111,5 +121,17 @@ public class StoreViewer extends Panel {
 	 */
 	public void setActive(boolean state) {
 		this.setEnabled(state);
+	}
+	
+	
+	public void configureCommands(int size,Dispatcher dispatcher)
+	{
+		for (int i = 0; i < size; i++) {
+			StoreItem item = storeCtrl.getStoreItem(i);
+			command = new UpdateStoreItemCommand(item);
+			
+			dispatcher.addCommand(item.getContent().getName(), command);
+			
+		}
 	}
 }//End of class StoreViewer

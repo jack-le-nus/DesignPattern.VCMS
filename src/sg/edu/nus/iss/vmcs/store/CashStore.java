@@ -7,6 +7,8 @@
  */
 package sg.edu.nus.iss.vmcs.store;
 
+import java.io.IOException;
+
 /**
  * This object represents the store of cash in the vending machine.
  * 
@@ -23,14 +25,28 @@ package sg.edu.nus.iss.vmcs.store;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class CashStore extends Store {
+public class CashStore implements Store {
 	/**This is the constant for coin invalid weight.*/
 	public final static int INVALID_COIN_WEIGHT = 9999;
+	
+	
+	/**This attribute hold the size of the store*/
+	protected int size;
+    /**This attribute hold the items of the store*/
+	protected StoreItem items[];
 
 	/**
 	 * This constructor creates an instance of the CashStore object.
 	 */
 	public CashStore() {
+	}
+	
+	/**
+	 * This constructor creates an instance of the CashStore object.
+	 */
+	public CashStore(int itemn) {
+		size = itemn;
+		items = new StoreItem[size];
 	}
 	
 	/**
@@ -82,4 +98,116 @@ public class CashStore extends Store {
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * This method sets the size of the items array in the Store.
+	 * @param sz the store size.
+	 */
+	public void setStoreSize(int sz) {
+		size = sz;
+		items = new StoreItem[size];
+	}
+
+	/**
+	 * This method returns the {@link StoreItem} corresponding to the index entered.
+	 * @return the array of {@link StoreItem}.
+	 */
+	public StoreItem[] getItems() {
+		return items;
+	}
+
+	/**
+	 * This method adds {@link StoreItem} into the store.
+	 * @param idx the index of the item.
+	 * @param object the store item to be added.
+	 */
+	public void addItem(int idx, StoreItem object) {
+		if ((idx >= size) || (idx < 0))
+			return;
+		items[idx] = object;
+	}
+
+	/**
+	 * This method returns the {@link StoreItem} with the given index.
+	 * @return the StoreItem.
+	 */
+	public StoreItem getStoreItem(int idx) {
+		if ((idx >= size) || (idx < 0))
+            return null;
+		return items[idx];
+	}
+
+	/**
+	 * This method finds a {@link StoreObject} in the store with a specified name&#46;
+	 * @param name the name of the Store Object&#46;
+	 * @return the Store Object&#46; Return null if no matching Store Object found&#46;
+	 */
+	public StoreObject findObject(String name) {
+		String en;
+		StoreObject so;
+		int i;
+
+		for (i = 0; i < size; i++) {
+			if (items[i] == null)
+				return null;
+			so = items[i].getContent();
+			if (so == null)
+				return null;
+			en = so.getName();
+			if (en != null) {
+				if (en.compareTo(name) == 0)
+					return so;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * This method sets the total number of a store item held.
+	 * @param idx the index of the store item.
+	 * @param qty the quantity of the store item.
+	 */
+	public void setQuantity(int idx, int qty) {
+		System.out.println("Store: setQauntity - qty=" + qty);
+		if ((idx >= size) || (idx < 0))
+			return;
+		items[idx].setQuantity(qty);
+	}
+
+	/**
+	 * This method return the store size; the total number of store item held.
+	 * @return the store size.
+	 */
+	public int getStoreSize() {
+		return size;
+	}
+
+	@Override
+	public void initialize(PropertyLoader cashLoader) {
+		// get the cash file from the environment property file;
+		int numOfItems = cashLoader.getNumOfItems();
+		this.setStoreSize(numOfItems);
+
+		for (int i = 0; i < numOfItems; i++) {
+		    CashStoreItem item = (CashStoreItem) cashLoader.getItem(i);
+		    this.addItem(i, item);
+		}
+		
+	}
+
+	@Override
+	public void saveProperties(PropertyLoader cashLoader) throws IOException {
+		int size = this.getStoreSize();
+		cashLoader.setNumOfItems(size);
+		for (int i = 0; i < size; i++) {
+			cashLoader.setItem(i, this.getStoreItem(i));
+		}
+		cashLoader.saveProperty();
+		
+	}
+	
+	
+	
+
 }//End of class CashStore

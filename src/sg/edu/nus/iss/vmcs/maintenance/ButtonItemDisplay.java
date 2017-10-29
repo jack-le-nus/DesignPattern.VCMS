@@ -7,10 +7,15 @@
  */
 package sg.edu.nus.iss.vmcs.maintenance;
 
-import java.awt.event.*;
-import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.event.ActionListener;
 
-import sg.edu.nus.iss.vmcs.store.*;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.store.StoreObject;
+import sg.edu.nus.iss.vmcs.system.Dispatcher;
+import sg.edu.nus.iss.vmcs.system.UpdateMachineryPanelCommand;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
@@ -23,6 +28,8 @@ public class ButtonItemDisplay extends Panel {
 	private ButtonItem items[];
 	private int len;
 	private Label lb;
+	
+	private Dispatcher dispatcher;
 
 	/**
 	 * This constructor creates an instance of ButtonItemDisplay object.
@@ -53,7 +60,15 @@ public class ButtonItemDisplay extends Panel {
 					ob.getName(),
 					ButtonItem.DEFAULT_LEN,
 					ButtonItem.GRID);
+			
+		    items[i].setName(ob.getName());
 			this.add(items[i]);
+			
+			
+			
+			
+			
+			
 		}
 	}
 
@@ -66,6 +81,8 @@ public class ButtonItemDisplay extends Panel {
 		for (i = 0; i < len; i++) {
 			items[i].addListener(l);
 			items[i].setActionCommand(String.valueOf(i));
+			System.out.println("Buttong name"+items[i].getName());
+			getDispatcher().addCommand(this.getClass().getName()+items[i].getName(), new UpdateMachineryPanelCommand(items[i]));
 		}
 	}
 
@@ -95,7 +112,7 @@ public class ButtonItemDisplay extends Panel {
 	/**
 	 * This method displays a quantity on to a specific ButtonItem&#46;
 	 * @param idx the index of the specific button item&#46;
-	 * @param qty the quantity of the specific item&#46;
+	 * @param qty the quantity of the specifi	c item&#46;
 	 * @throws VMCSException if idx is greater or equal than total 
 	 * number of button item&#46;
 	 */
@@ -105,4 +122,15 @@ public class ButtonItemDisplay extends Panel {
 
 		items[idx].setValue(qty);
 	}
+
+	public Dispatcher getDispatcher() {
+		return dispatcher;
+	}
+
+	public void setDispatcher(Dispatcher dispatcher) {
+		this.dispatcher = dispatcher;
+	}
+	
+	
+	
 }//End of class ButtonItemDisplay.
