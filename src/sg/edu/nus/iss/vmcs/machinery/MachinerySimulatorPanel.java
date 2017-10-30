@@ -64,7 +64,7 @@ public class MachinerySimulatorPanel extends Dialog {
 		lb.setFont(new Font("Helvetica", Font.BOLD, 24));
 		lb.setAlignment(Label.CENTER);
 		
-		Builder builder = new StoreViewerBuilder(cashStoreCtrl);
+		StoreViewerBuilder builder = new StoreViewerBuilder(cashStoreCtrl);
 		Director director = new Director(builder);
 		director.construct(CASH_VIEW_TITLE, cashStoreCtrl.getStoreItems(), cashStoreCtrl.getStoreSize());
 		cashDisplay = builder.getResult();

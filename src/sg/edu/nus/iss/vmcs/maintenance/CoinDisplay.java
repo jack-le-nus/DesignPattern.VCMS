@@ -47,7 +47,7 @@ public class CoinDisplay extends ControlElement {
 		len = storeCtrl.getStoreSize();
 		StoreItem[] items = storeCtrl.getStoreItems();
 
-		Builder builder = new ButtonItemDisplayBuilder();
+		ButtonItemDisplayBuilder builder = new ButtonItemDisplayBuilder();
 		Director director = new Director(builder);
 		director.construct(TITLE, items, len);
 		bi = builder.getResult();
