@@ -67,8 +67,8 @@ public class StoreViewerListener implements ActionListener {
 		StoreItem storeItem = storeCtrl.getStoreItem(item);
 		
 		dispatcher = storeCtrl.getDispatcher();
-		dispatcher.dispatchCommand(storeItem.getContent().getName(), qty);
-		storeCtrl.getDispatcher().dispatchCommand(ButtonItemDisplay.class.getName()+storeItem.getContent().getName(), qty);
+		dispatcher.dispatchCommand(storeItem.getContent().getName(),item, qty);
+		storeCtrl.getDispatcher().dispatchCommand(ButtonItemDisplay.class.getName()+storeItem.getContent().getName(), item);
 	
 		
 		/*if(storeCtrl instanceof CashStoreController)

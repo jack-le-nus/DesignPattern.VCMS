@@ -15,7 +15,6 @@ import java.awt.event.ActionListener;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
 import sg.edu.nus.iss.vmcs.system.Dispatcher;
-import sg.edu.nus.iss.vmcs.system.UpdateMachineryPanelCommand;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
 /**
@@ -81,8 +80,6 @@ public class ButtonItemDisplay extends Panel {
 		for (i = 0; i < len; i++) {
 			items[i].addListener(l);
 			items[i].setActionCommand(String.valueOf(i));
-			System.out.println("Buttong name"+items[i].getName());
-			getDispatcher().addCommand(this.getClass().getName()+items[i].getName(), new UpdateMachineryPanelCommand(items[i]));
 		}
 	}
 
@@ -129,6 +126,13 @@ public class ButtonItemDisplay extends Panel {
 
 	public void setDispatcher(Dispatcher dispatcher) {
 		this.dispatcher = dispatcher;
+	}
+	
+	public ButtonItem getButtonItem(int index)
+	{
+		
+		
+		return items[index];
 	}
 	
 	

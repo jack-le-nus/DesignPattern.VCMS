@@ -128,5 +128,14 @@ public class DrinkDisplay extends DisplayPanel {
 	}
 	
 	
+	public ButtonItemDisplay getBi() {
+		return bi;
+	}
+
+	public void setBi(ButtonItemDisplay bi) {
+		this.bi = bi;
+	}
+	
+	
 	
 }//End of class DrinkDisplay

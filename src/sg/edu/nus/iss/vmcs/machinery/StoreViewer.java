@@ -32,7 +32,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
 public abstract class StoreViewer extends Panel {
 	private LabelledDisplay viewItems[];
 	private StoreController storeCtrl;
-	Command command;
+	
 	
 	private int type;
 	
@@ -124,14 +124,4 @@ public abstract class StoreViewer extends Panel {
 	}
 	
 	
-	public void configureCommands(int size,Dispatcher dispatcher)
-	{
-		for (int i = 0; i < size; i++) {
-			StoreItem item = storeCtrl.getStoreItem(i);
-			command = new UpdateStoreItemCommand(item);
-			
-			dispatcher.addCommand(item.getContent().getName(), command);
-			
-		}
-	}
 }//End of class StoreViewer

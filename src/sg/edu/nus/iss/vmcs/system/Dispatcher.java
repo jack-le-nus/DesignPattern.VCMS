@@ -12,8 +12,9 @@ public class Dispatcher {
 		commandObjects.put(commandString, command);
 	}
 	
-	public void dispatchCommand(String commandString, Object object)
+	public void dispatchCommand(String commandString, Object... object)
 	{
+		System.out.println(commandString);
 		commandObjects.get(commandString).execute(object);
 	}
 

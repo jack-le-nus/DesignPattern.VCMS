@@ -17,8 +17,12 @@ import sg.edu.nus.iss.vmcs.store.DrinksBrand;
 import sg.edu.nus.iss.vmcs.store.DrinksStoreController;
 import sg.edu.nus.iss.vmcs.store.DrinksStoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreController;
+import sg.edu.nus.iss.vmcs.store.StoreItem;
+import sg.edu.nus.iss.vmcs.system.Dispatcher;
 import sg.edu.nus.iss.vmcs.system.MainController;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
+import sg.edu.nus.iss.vmcs.system.UpdateCoinDisplayCommand;
+import sg.edu.nus.iss.vmcs.system.UpdateDrinksDisplayCommand;
 import sg.edu.nus.iss.vmcs.util.MessageDialog;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -32,6 +36,7 @@ public class MaintenanceController {
 	private MainController mCtrl;
 	private MaintenancePanel mpanel;
 	private AccessManager am;
+	private Dispatcher dispatcher;
 
 	/**
 	 * This constructor creates an instance of the MaintenanceController.
@@ -59,6 +64,9 @@ public class MaintenanceController {
 			mpanel = new MaintenancePanel((Frame) scp, this);
 		mpanel.display();
 		mpanel.setActive(MaintenancePanel.DIALOG, true);
+		
+		dispatcher = mCtrl.getDispatcher();
+		configureCommands();
 		// setActive of password, invalid and valid display.
 	}
 
@@ -262,5 +270,29 @@ public class MaintenanceController {
 	public void closeDown() {
 		if (mpanel != null)
 			mpanel.closeDown();
+	}
+	
+	
+	
+	public Dispatcher getDispatcher() {
+		return dispatcher;
+	}
+
+	public void setDispatcher(Dispatcher dispatcher) {
+		this.dispatcher = dispatcher;
+	}
+
+	public void configureCommands()
+	{
+		StoreController storeController = mCtrl.getCashStoreController();
+		for (int i = 0; i < storeController.getStoreSize(); i++) {
+			StoreItem item = storeController.getStoreItem(i);
+			getDispatcher().addCommand(ButtonItemDisplay.class.getName()+item.getContent().getName(), new UpdateCoinDisplayCommand(mCtrl.getMaintenanceController()));
+		}
+		storeController = mCtrl.getDrinksStoreController();
+		for (int i = 0; i < storeController.getStoreSize(); i++) {
+			StoreItem item = storeController.getStoreItem(i);
+			getDispatcher().addCommand(ButtonItemDisplay.class.getName()+item.getContent().getName(), new UpdateDrinksDisplayCommand(mCtrl.getMaintenanceController()));
+		}
 	}
 }//End of class MaintenanceController

@@ -103,6 +103,16 @@ public class CoinDisplay extends DisplayPanel {
 	public void setDispatcher(Dispatcher dispatcher) {
 		this.dispatcher = dispatcher;
 	}
+
+	public ButtonItemDisplay getBi() {
+		return bi;
+	}
+
+	public void setBi(ButtonItemDisplay bi) {
+		this.bi = bi;
+	}
+	
+	
 	
 	
 	

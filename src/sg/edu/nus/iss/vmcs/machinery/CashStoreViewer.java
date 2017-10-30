@@ -52,9 +52,7 @@ public class CashStoreViewer extends StoreViewer {
 		
 		}
 		
-		configureCommands(sSize, dispatcher);
-		
-	
+		storeCtrl.configureCommands(sSize, dispatcher);
 	}
 	
 	

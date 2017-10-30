@@ -9,7 +9,9 @@ package sg.edu.nus.iss.vmcs.store;
 
 import java.io.IOException;
 
+import sg.edu.nus.iss.vmcs.system.Command;
 import sg.edu.nus.iss.vmcs.system.Dispatcher;
+import sg.edu.nus.iss.vmcs.system.UpdateStoreItemCommand;
 
 /**
  * This control object manages changes in CashStore attributes and 
@@ -34,6 +36,7 @@ public class StoreController {
 	private PropertyLoader propertyLoader;
 	
 	private Dispatcher dispatcher;
+	Command command;
 	
 	
 	/*private CashStore cStore;
@@ -139,6 +142,17 @@ public class StoreController {
 
 	public void setDispatcher(Dispatcher dispatcher) {
 		this.dispatcher = dispatcher;
+	}
+	
+	
+	public void configureCommands(int size,Dispatcher dispatcher)
+	{
+		for (int i = 0; i < size; i++) {
+			StoreItem item = this.getStoreItem(i);
+			command = new UpdateStoreItemCommand(this);
+			dispatcher.addCommand(item.getContent().getName(), command);
+			
+		}
 	}
 	
 	

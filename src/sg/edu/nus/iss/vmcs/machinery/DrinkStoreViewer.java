@@ -49,7 +49,7 @@ public class DrinkStoreViewer extends StoreViewer {
 				this.add(viewItems[i]);
 			}
 			
-			configureCommands(sSize, dispatcher);
+			storeCtrl.configureCommands(sSize, dispatcher);
 			
 	 }
 

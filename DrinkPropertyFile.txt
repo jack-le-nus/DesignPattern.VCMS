@@ -1,5 +1,5 @@
 #
-#Sun Oct 29 14:54:11 CST 2017
+#Mon Oct 30 16:54:04 CST 2017
 Name6=Soya Bean
 Name5=Coca-Cola
 Name4=Soya Bean
@@ -8,11 +8,11 @@ Name2=Fanta
 Name1=Coca-Cola
 NumOfItems=6
 Quantity6=32
-Quantity5=200
+Quantity5=210
 Quantity4=200
-Quantity3=100
-Quantity2=100
-Quantity1=100
+Quantity3=130
+Quantity2=150
+Quantity1=110
 Price6=90
 Price5=100
 Price4=90
