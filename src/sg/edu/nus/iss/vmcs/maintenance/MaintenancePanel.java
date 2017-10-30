@@ -123,7 +123,7 @@ public class MaintenancePanel extends Dialog {
 		totalCash = new ButtonItem("Show Total Cash Held", 5, ButtonItem.FLOW);
 		TotalCashButtonListener tl;
 
-		tl = new TotalCashButtonListener(mctrl);
+		tl = new TotalCashButtonListener();
 		totalCash.addListener(tl);
 
 		transferCash = new Button("Press to Collect All Cash");

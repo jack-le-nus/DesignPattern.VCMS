@@ -8,8 +8,8 @@ import sg.edu.nus.iss.vmcs.maintenance.ButtonItem;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
-public class ItemDisplay extends Panel implements ItemDisplayElement {
-	private ItemDisplay items[];
+public class ControlElement extends Panel implements IControlElement {
+	private ControlElement items[];
 	private StoreItem storeItem[];
 	private int len;
 	private Label lb;
@@ -100,8 +100,8 @@ public class ItemDisplay extends Panel implements ItemDisplayElement {
 
 	}
 
-	public void setItems(ItemDisplayElement[] items) {
-		this.items = (ItemDisplay[])items;
+	public void setItems(IControlElement[] items) {
+		this.items = (ControlElement[])items;
 	}
 
 	public void setStoreItems(StoreItem[] sitems) {

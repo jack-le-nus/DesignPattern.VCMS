@@ -9,6 +9,6 @@ public interface Builder {
 
     void addViewItems(StoreItem[] items, int length);
 
-    ItemDisplay getResult();
+    ControlElement getResult();
 }
 

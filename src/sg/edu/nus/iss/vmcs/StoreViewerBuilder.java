@@ -12,7 +12,7 @@ import sg.edu.nus.iss.vmcs.util.LabelledDisplay;
 
 public class StoreViewerBuilder implements Builder {
 
-	private ItemDisplay storeViewerDisplay = new ItemDisplay();
+	private ControlElement storeViewerDisplay = new ControlElement();
 	private StoreController storeCtrl;
 	
 	public StoreViewerBuilder(StoreController storeCtrl) {
@@ -45,7 +45,7 @@ public class StoreViewerBuilder implements Builder {
 		storeViewerDisplay.update();
 	}
 
-	public ItemDisplay getResult() {
+	public ControlElement getResult() {
 		return storeViewerDisplay;
 	}
 

@@ -11,6 +11,7 @@ import java.awt.Frame;
 
 import sg.edu.nus.iss.vmcs.ApplicationMediator;
 import sg.edu.nus.iss.vmcs.BaseController;
+import sg.edu.nus.iss.vmcs.Dispatcher;
 import sg.edu.nus.iss.vmcs.MediatorNotification;
 import sg.edu.nus.iss.vmcs.NotificationType;
 import sg.edu.nus.iss.vmcs.customer.CustomerPanel;
@@ -45,6 +46,7 @@ public class MaintenanceController extends BaseController {
 		super(mediator);
 		mCtrl = mctrl;
 		am = new AccessManager(this);
+		this.configureCommands();
 	}
 
 	/**
@@ -252,5 +254,10 @@ public class MaintenanceController extends BaseController {
 			displayMaintenancePanel();
 		}
 		return null;
+	}
+	
+	private void configureCommands() {
+		Dispatcher.getInstance().addCommand("getTotalCash", new GetTotalCashCommand(this));
+		Dispatcher.getInstance().addCommand("displayCoin", new DisplayCoinCommand(this));
 	}
 }//End of class MaintenanceController

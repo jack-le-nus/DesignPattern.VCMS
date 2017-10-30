@@ -8,6 +8,9 @@
 package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.event.*;
+
+import sg.edu.nus.iss.vmcs.Dispatcher;
+
 import java.awt.*;
 
 /**
@@ -18,14 +21,12 @@ import java.awt.*;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class CoinDisplayListener implements ActionListener {
-	private MaintenanceController mctrl;
 
 	/**
 	 * This constructor create an instance of the CoinDisplayListener object.
 	 * @param mc the MaintenanceController.
 	 */
-	public CoinDisplayListener(MaintenanceController mc) {
-		mctrl = mc;
+	public CoinDisplayListener() {
 	}
 	
 	/**
@@ -41,6 +42,6 @@ public class CoinDisplayListener implements ActionListener {
 		cmd = btn.getActionCommand();
 		idx = Integer.parseInt(cmd);
 
-		mctrl.displayCoin(idx);
+		Dispatcher.getInstance().dispatchCommand("displayCoin", idx);
 	}
 }//End of class CoinDisplayListener

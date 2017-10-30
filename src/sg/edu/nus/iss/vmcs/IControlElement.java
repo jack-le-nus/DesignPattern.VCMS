@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
-public interface ItemDisplayElement {
+public interface IControlElement {
 
 	void addListener(ActionListener l);
 
@@ -21,7 +21,7 @@ public interface ItemDisplayElement {
 	
 	void update();
 	
-	void setItems(ItemDisplayElement[] items);
+	void setItems(IControlElement[] items);
 	
 	void setStoreItems(StoreItem[] items);
 }

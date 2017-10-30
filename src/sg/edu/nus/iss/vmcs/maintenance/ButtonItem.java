@@ -10,8 +10,8 @@ package sg.edu.nus.iss.vmcs.maintenance;
 import java.awt.*;
 import java.awt.event.*;
 
-import sg.edu.nus.iss.vmcs.ItemDisplay;
-import sg.edu.nus.iss.vmcs.ItemDisplayElement;
+import sg.edu.nus.iss.vmcs.ControlElement;
+import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -21,7 +21,7 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class ButtonItem extends ItemDisplay {
+public class ButtonItem extends ControlElement {
 	/**This constant attribute denotes the default length of the button label*/
 	public final static int DEFAULT_LEN = 5;
 	/**This constant attribute denotes the flow layout for button item content*/
@@ -128,7 +128,7 @@ public class ButtonItem extends ItemDisplay {
 		
 	}
 
-	public void setItems(ItemDisplayElement[] items) {
+	public void setItems(IControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}

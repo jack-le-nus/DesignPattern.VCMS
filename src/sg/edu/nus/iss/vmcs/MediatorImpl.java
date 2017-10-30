@@ -16,7 +16,7 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 import sg.edu.nus.iss.vmcs.util.MessageDialog;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
-public class AuthenticationMediatorImpl implements ApplicationMediator {
+public class MediatorImpl implements ApplicationMediator {
 	private HashMap<String, BaseController> controllers =
 			new HashMap<String, BaseController>();
 	
@@ -41,7 +41,7 @@ public class AuthenticationMediatorImpl implements ApplicationMediator {
 				this.controllers.get("SimulationController").handleMessage(notification);
 			}
 		} else if (notification.getType() == NotificationType.TransferAll) {
-			Integer cc = (Integer)this.controllers.get("StoreController").handleMessage(notification);
+			Integer cc = (Integer)this.controllers.get("CashStoreController").handleMessage(notification);
 			this.controllers.get("MachineryController").handleMessage(notification);
 			this.controllers.get("MaintenanceController").handleMessage(new MediatorNotification(NotificationType.TransferAll, cc));
 			

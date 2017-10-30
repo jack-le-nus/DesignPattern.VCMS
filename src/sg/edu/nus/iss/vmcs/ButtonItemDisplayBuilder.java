@@ -9,7 +9,7 @@ import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.store.StoreObject;
 
 public class ButtonItemDisplayBuilder implements Builder {
-	private ItemDisplay buttonItemDisplay = new ItemDisplay();
+	private ControlElement buttonItemDisplay = new ControlElement();
 	
 	public void addLabel(String title) {
 		Panel tp1 = new Panel();
@@ -43,7 +43,7 @@ public class ButtonItemDisplayBuilder implements Builder {
 		buttonItemDisplay.setItemSize(len);
 	}
 
-	public ItemDisplay getResult() {
+	public ControlElement getResult() {
 		return buttonItemDisplay;
 	}
 

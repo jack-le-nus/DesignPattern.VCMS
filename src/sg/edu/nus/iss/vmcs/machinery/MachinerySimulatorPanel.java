@@ -11,9 +11,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import sg.edu.nus.iss.vmcs.Builder;
-import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
 import sg.edu.nus.iss.vmcs.Director;
-import sg.edu.nus.iss.vmcs.ItemDisplay;
+import sg.edu.nus.iss.vmcs.ControlElement;
 import sg.edu.nus.iss.vmcs.StoreViewerBuilder;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
@@ -36,8 +35,8 @@ import sg.edu.nus.iss.vmcs.system.SimulatorControlPanel;
 public class MachinerySimulatorPanel extends Dialog {
 	private static final String TITLE = "Machinery Panel";
 
-	private ItemDisplay cashDisplay;
-	private ItemDisplay drinksDisplay;
+	private ControlElement cashDisplay;
+	private ControlElement drinksDisplay;
 	private Checkbox doorDisplay;
 	public DrinkStoreController drinkStoreCtrl;
 	public CashStoreController cashStoreCtrl;
@@ -125,7 +124,7 @@ public class MachinerySimulatorPanel extends Dialog {
 	 * This method returns the CashDisplay:StoreViewer.
 	 * @return the CashDisplay:StoreViewer.
 	 */
-	public ItemDisplay getCashStoreDisplay() {
+	public ControlElement getCashStoreDisplay() {
 		return cashDisplay;
 	}
 
@@ -133,7 +132,7 @@ public class MachinerySimulatorPanel extends Dialog {
 	 * This method returns the DrinksDisplay:StoreViewer.
 	 * @return the DrinksDisplay:StoreViewer.
 	 */
-	public ItemDisplay getDrinksStoreDisplay() {
+	public ControlElement getDrinksStoreDisplay() {
 		return drinksDisplay;
 	}
 

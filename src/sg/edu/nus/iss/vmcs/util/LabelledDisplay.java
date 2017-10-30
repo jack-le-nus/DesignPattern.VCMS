@@ -15,8 +15,8 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ActionListener;
 
-import sg.edu.nus.iss.vmcs.ItemDisplay;
-import sg.edu.nus.iss.vmcs.ItemDisplayElement;
+import sg.edu.nus.iss.vmcs.ControlElement;
+import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 
 /**
@@ -25,7 +25,7 @@ import sg.edu.nus.iss.vmcs.store.StoreItem;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class LabelledDisplay extends ItemDisplay {
+public class LabelledDisplay extends ControlElement {
 	/**This constant attribute denotes the default layout of the LabelledDisplay*/
 	public final static int DEFAULT = 5;
 	/**This constant attribute denotes the flow layout of the LabelledDisplay*/
@@ -144,7 +144,7 @@ public class LabelledDisplay extends ItemDisplay {
 		
 	}
 
-	public void setItems(ItemDisplayElement[] items) {
+	public void setItems(IControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}

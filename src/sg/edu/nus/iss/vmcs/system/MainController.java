@@ -10,7 +10,7 @@ package sg.edu.nus.iss.vmcs.system;
 import java.io.IOException;
 
 import sg.edu.nus.iss.vmcs.ApplicationMediator;
-import sg.edu.nus.iss.vmcs.AuthenticationMediatorImpl;
+import sg.edu.nus.iss.vmcs.MediatorImpl;
 import sg.edu.nus.iss.vmcs.customer.TransactionController;
 import sg.edu.nus.iss.vmcs.machinery.MachineryController;
 import sg.edu.nus.iss.vmcs.maintenance.MaintenanceController;
@@ -78,7 +78,7 @@ public class MainController {
 				new DrinkPropertyLoader(Environment.getDrinkPropFile());
 			cashLoader.initialize();
 			drinksLoader.initialize();
-			mediator = new AuthenticationMediatorImpl();
+			mediator = new MediatorImpl();
 			this.cashStoreCtrl = new CashStoreController(new CashStore(), cashLoader, mediator);
 			this.cashStoreCtrl.initialize();
 			this.drinkStoreCtrl = new DrinkStoreController(new DrinksStore(), drinksLoader, mediator);

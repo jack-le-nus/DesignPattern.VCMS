@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sg.edu.nus.iss.vmcs.AuthenticationMediatorImpl;
+import sg.edu.nus.iss.vmcs.MediatorImpl;
 import sg.edu.nus.iss.vmcs.system.CashPropertyLoader;
 import sg.edu.nus.iss.vmcs.system.DrinkPropertyLoader;
 import sg.edu.nus.iss.vmcs.system.Environment;
@@ -35,14 +35,14 @@ public class StoreControllerTest extends TestCase{
 		cashLoader.initialize();
 		drinksLoader.initialize();
 		//Act
-		StoreController storeController=new DrinkStoreController(new DrinksStore(), drinksLoader, new AuthenticationMediatorImpl());
+		StoreController storeController=new DrinkStoreController(new DrinksStore(), drinksLoader, new MediatorImpl());
 		storeController.initialize();
 		//Assert
 		assertNotNull(storeController);
 		assertNotNull(storeController.getStore());
 		
 		//Act
-		storeController=new CashStoreController(new CashStore(), cashLoader, new AuthenticationMediatorImpl());
+		storeController=new CashStoreController(new CashStore(), cashLoader, new MediatorImpl());
 		storeController.initialize();
 		//Assert
 		assertNotNull(storeController);

@@ -8,7 +8,7 @@ public class CashStoreController extends StoreController {
 	
 	public CashStoreController(Store store, PropertyLoader loader, ApplicationMediator mediator) {
 		super(store, loader, mediator);
-		// TODO Auto-generated constructor stub
+		this.mediator.register("CashStoreController", this);
 	}
 
 	/**

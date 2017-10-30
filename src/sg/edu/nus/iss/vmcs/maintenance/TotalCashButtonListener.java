@@ -8,6 +8,9 @@
 package sg.edu.nus.iss.vmcs.maintenance;
 
 import java.awt.event.ActionListener;
+
+import sg.edu.nus.iss.vmcs.Dispatcher;
+
 import java.awt.event.ActionEvent;
 
 /**
@@ -18,20 +21,18 @@ import java.awt.event.ActionEvent;
  * @author Olivo Miotto, Pang Ping Li
  */
 public class TotalCashButtonListener implements ActionListener {
-	MaintenanceController mctrl;
 
 	/**
 	 * This constructor creates an instance of TotalCashButtonListener.
 	 * @param mc the MaintenanceController.
 	 */
-	public TotalCashButtonListener(MaintenanceController mc) {
-		mctrl = mc;
+	public TotalCashButtonListener() {
 	}
 	
 	/**
 	 * This method performs actions in response to the Total Cash Button being pressed.
 	 */
 	public void actionPerformed(ActionEvent e) {
-		mctrl.getTotalCash();
+		Dispatcher.getInstance().dispatchCommand("getTotalCash");
 	}
 }//End of class TotalCashButtonListener

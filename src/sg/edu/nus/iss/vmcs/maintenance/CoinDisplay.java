@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 import sg.edu.nus.iss.vmcs.Builder;
 import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
 import sg.edu.nus.iss.vmcs.Director;
-import sg.edu.nus.iss.vmcs.ItemDisplay;
-import sg.edu.nus.iss.vmcs.ItemDisplayElement;
+import sg.edu.nus.iss.vmcs.ControlElement;
+import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -27,12 +27,12 @@ import sg.edu.nus.iss.vmcs.util.VMCSException;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class CoinDisplay extends ItemDisplay {
+public class CoinDisplay extends ControlElement {
 	public final static String TITLE = "Quantity of Coins Available";
 
 	private CashStoreController storeCtrl;
 	private MaintenanceController mCtrl;
-	private ItemDisplay bi;
+	private ControlElement bi;
 	private int len;
 	private int curIdx;
 
@@ -52,7 +52,7 @@ public class CoinDisplay extends ItemDisplay {
 		director.construct(TITLE, items, len);
 		bi = builder.getResult();
 
-		bi.addListener(new CoinDisplayListener(mCtrl));
+		bi.addListener(new CoinDisplayListener());
 
 		bi.clear();
 
@@ -112,7 +112,7 @@ public class CoinDisplay extends ItemDisplay {
 		
 	}
 
-	public void setItems(ItemDisplayElement[] items) {
+	public void setItems(IControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -13,8 +13,8 @@ import java.awt.event.ActionListener;
 import sg.edu.nus.iss.vmcs.Builder;
 import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
 import sg.edu.nus.iss.vmcs.Director;
-import sg.edu.nus.iss.vmcs.ItemDisplay;
-import sg.edu.nus.iss.vmcs.ItemDisplayElement;
+import sg.edu.nus.iss.vmcs.ControlElement;
+import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -27,13 +27,13 @@ import sg.edu.nus.iss.vmcs.util.*;
  * @version 3.0 5/07/2003
  * @author Olivo Miotto, Pang Ping Li
  */
-public class DrinkDisplay extends ItemDisplay { 
+public class DrinkDisplay extends ControlElement { 
 	public final static String TITLE = "Quantity of Drinks Available";
 
 	private DrinkStoreController storeCtrl;
 	private MaintenanceController mCtrl;
-	private ItemDisplay bi;
-	private ItemDisplay price;
+	private ControlElement bi;
+	private ControlElement price;
 	private int curIdx; //current displayed item index;
 
 	/**
@@ -75,7 +75,7 @@ public class DrinkDisplay extends ItemDisplay {
 	 * This method returns the LabelledDisplay of the price.
 	 * @return LabelledDisplay of the price.
 	 */
-	public ItemDisplayElement getPriceDisplay() {
+	public IControlElement getPriceDisplay() {
 		return price;
 	}
 
@@ -135,7 +135,7 @@ public class DrinkDisplay extends ItemDisplay {
 		
 	}
 
-	public void setItems(ItemDisplayElement[] items) {
+	public void setItems(IControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}
