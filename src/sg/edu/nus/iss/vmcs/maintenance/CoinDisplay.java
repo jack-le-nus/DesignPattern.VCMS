@@ -14,7 +14,6 @@ import sg.edu.nus.iss.vmcs.Builder;
 import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
 import sg.edu.nus.iss.vmcs.Director;
 import sg.edu.nus.iss.vmcs.ControlElement;
-import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -112,7 +111,7 @@ public class CoinDisplay extends ControlElement {
 		
 	}
 
-	public void setItems(IControlElement[] items) {
+	public void setItems(ControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}

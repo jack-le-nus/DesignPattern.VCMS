@@ -14,7 +14,6 @@ import sg.edu.nus.iss.vmcs.Builder;
 import sg.edu.nus.iss.vmcs.ButtonItemDisplayBuilder;
 import sg.edu.nus.iss.vmcs.Director;
 import sg.edu.nus.iss.vmcs.ControlElement;
-import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.*;
 import sg.edu.nus.iss.vmcs.util.*;
 
@@ -75,7 +74,7 @@ public class DrinkDisplay extends ControlElement {
 	 * This method returns the LabelledDisplay of the price.
 	 * @return LabelledDisplay of the price.
 	 */
-	public IControlElement getPriceDisplay() {
+	public ControlElement getPriceDisplay() {
 		return price;
 	}
 
@@ -135,7 +134,7 @@ public class DrinkDisplay extends ControlElement {
 		
 	}
 
-	public void setItems(IControlElement[] items) {
+	public void setItems(ControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}

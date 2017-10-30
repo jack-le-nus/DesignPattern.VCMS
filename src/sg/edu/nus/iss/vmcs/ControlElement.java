@@ -8,7 +8,7 @@ import sg.edu.nus.iss.vmcs.maintenance.ButtonItem;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
-public class ControlElement extends Panel implements IControlElement {
+public class ControlElement extends Panel {
 	private ControlElement items[];
 	private StoreItem storeItem[];
 	private int len;
@@ -100,7 +100,7 @@ public class ControlElement extends Panel implements IControlElement {
 
 	}
 
-	public void setItems(IControlElement[] items) {
+	public void setItems(ControlElement[] items) {
 		this.items = (ControlElement[])items;
 	}
 

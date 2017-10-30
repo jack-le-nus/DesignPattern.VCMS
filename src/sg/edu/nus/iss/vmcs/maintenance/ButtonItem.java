@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 import sg.edu.nus.iss.vmcs.ControlElement;
-import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 import sg.edu.nus.iss.vmcs.util.VMCSException;
 
@@ -128,7 +127,7 @@ public class ButtonItem extends ControlElement {
 		
 	}
 
-	public void setItems(IControlElement[] items) {
+	public void setItems(ControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}

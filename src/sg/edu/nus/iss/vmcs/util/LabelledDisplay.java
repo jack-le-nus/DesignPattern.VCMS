@@ -16,7 +16,6 @@ import java.awt.TextField;
 import java.awt.event.ActionListener;
 
 import sg.edu.nus.iss.vmcs.ControlElement;
-import sg.edu.nus.iss.vmcs.IControlElement;
 import sg.edu.nus.iss.vmcs.store.StoreItem;
 
 /**
@@ -144,7 +143,7 @@ public class LabelledDisplay extends ControlElement {
 		
 	}
 
-	public void setItems(IControlElement[] items) {
+	public void setItems(ControlElement[] items) {
 		// TODO Auto-generated method stub
 		
 	}
